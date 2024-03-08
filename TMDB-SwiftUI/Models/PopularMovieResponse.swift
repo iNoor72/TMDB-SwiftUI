@@ -9,15 +9,15 @@ import Foundation
 
 struct PopularMovieResponse: Codable {
     let page: Int
-    let results: [Movie]
+    let movies: [Movie]
 
     enum CodingKeys: String, CodingKey {
-        case page, results
+        case page, movies
     }
 }
 
 // MARK: - Result
-struct Movie: Codable {
+struct Movie: Codable, Identifiable {
     let backdropPath: String
     let id: Int
     let originalTitle, overview: String

@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct MoviesListViews: View {
+    @StateObject private var viewModel = MoviesListViewModel()
+
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            List(viewModel.moviesList) { movie in
+                PopularMovieCellView(movie: movie)
+            }
         }
+        .navigationTitle("The Movie Database")
         .padding()
     }
 }

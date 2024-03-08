@@ -7,6 +7,26 @@
 
 import Foundation
 
-@Observable
-class MoviesListViewModel {
+class MoviesListViewModel: ObservableObject {
+    @Published var moviesList: [Movie] = []
+    var page = 1
+    private var interactor: MoviesListInteractorProtocol
+    
+    init(interactor: MoviesListInteractorProtocol = MoviesListInteractor()) {
+        self.interactor = interactor
+    }
+    
+    func fetchMoviesFromAPI() {
+        interactor.fetchPopularMovies(page: page) {[weak self] result in
+            switch result {
+            case .failure(let error):
+                fatalError()
+                
+            case .success(let response):
+                self?.moviesList = response.movies
+            }
+        }
+    }
+    
+    
 }

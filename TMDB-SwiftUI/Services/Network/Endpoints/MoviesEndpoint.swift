@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 enum MoviesEndpoint {
-    case popularMovies
+    case popularMovies(page: Int)
     case movieDetails(movieID: String)
 }
 
@@ -34,20 +34,18 @@ extension MoviesEndpoint: Endpoint {
     }
     
     var parameters: Alamofire.Parameters? {
-        return nil
+        return ["api_key": APIConstants.APIKey]
     }
     
     var method: Alamofire.HTTPMethod {
         switch self {
-        case .movieDetails(_), .popularMovies:
+        case .movieDetails, .popularMovies:
             return .get
         }
     }
     
     var headers: HTTPHeaders {
-        return  ["accept": "application/json",
-                 "Authorization": "Bearer \(APIConstants.token)"
-        ]
+        return  ["accept": "application/json"]
     }
     
     var encoding: ParameterEncoding {

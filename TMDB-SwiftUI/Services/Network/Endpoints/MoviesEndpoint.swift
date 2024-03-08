@@ -10,7 +10,7 @@ import Alamofire
 
 enum MoviesEndpoint {
     case popularMovies(page: Int)
-    case movieDetails(movieID: String)
+    case movieDetails(movieID: Int)
 }
 
 extension MoviesEndpoint: Endpoint {
@@ -30,7 +30,15 @@ extension MoviesEndpoint: Endpoint {
     }
     
     var parameters: Alamofire.Parameters? {
-        return ["api_key": APIConstants.APIKey]
+        var parameters: [String: Any] =  ["api_key": APIConstants.APIKey]
+        switch self {
+        case .popularMovies(let page):
+            parameters["page"] = page
+            
+        default:
+            break
+        }
+        return parameters
     }
     
     var method: Alamofire.HTTPMethod {

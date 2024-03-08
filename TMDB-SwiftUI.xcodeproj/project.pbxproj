@@ -30,6 +30,9 @@
 		8707306A2B9B6DBC002D5E1F /* DatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870730692B9B6DBC002D5E1F /* DatabaseProtocol.swift */; };
 		8707306C2B9B7060002D5E1F /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8707306B2B9B7060002D5E1F /* DatabaseManager.swift */; };
 		8707306E2B9B7171002D5E1F /* PopularMovieCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8707306D2B9B7171002D5E1F /* PopularMovieCellView.swift */; };
+		870730732B9B9239002D5E1F /* MovieDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870730722B9B9239002D5E1F /* MovieDetailsInteractor.swift */; };
+		870730752B9B9242002D5E1F /* MovieDetailsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870730742B9B9242002D5E1F /* MovieDetailsRepository.swift */; };
+		870730772B9B93DD002D5E1F /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870730762B9B93DD002D5E1F /* ErrorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +58,9 @@
 		870730692B9B6DBC002D5E1F /* DatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseProtocol.swift; sourceTree = "<group>"; };
 		8707306B2B9B7060002D5E1F /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		8707306D2B9B7171002D5E1F /* PopularMovieCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMovieCellView.swift; sourceTree = "<group>"; };
+		870730722B9B9239002D5E1F /* MovieDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsInteractor.swift; sourceTree = "<group>"; };
+		870730742B9B9242002D5E1F /* MovieDetailsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsRepository.swift; sourceTree = "<group>"; };
+		870730762B9B93DD002D5E1F /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				8707306D2B9B7171002D5E1F /* PopularMovieCellView.swift */,
+				870730762B9B93DD002D5E1F /* ErrorView.swift */,
 			);
 			path = CommonViews;
 			sourceTree = "<group>";
@@ -188,6 +195,8 @@
 			children = (
 				870730502B9B58C8002D5E1F /* MovieDetailsView.swift */,
 				870730542B9B58D9002D5E1F /* MovieDetailsViewModel.swift */,
+				870730722B9B9239002D5E1F /* MovieDetailsInteractor.swift */,
+				870730742B9B9242002D5E1F /* MovieDetailsRepository.swift */,
 			);
 			path = MovieDetails;
 			sourceTree = "<group>";
@@ -299,6 +308,7 @@
 				8707302B2B9B556A002D5E1F /* MoviesListViews.swift in Sources */,
 				8707303B2B9B55A3002D5E1F /* AppConstants.swift in Sources */,
 				8707303D2B9B55B9002D5E1F /* AppStrings.swift in Sources */,
+				870730732B9B9239002D5E1F /* MovieDetailsInteractor.swift in Sources */,
 				870730672B9B6D75002D5E1F /* MoviesListRepository.swift in Sources */,
 				870730652B9B6D33002D5E1F /* MoviesListInteractor.swift in Sources */,
 				870730612B9B5F8A002D5E1F /* PopularMovieResponse.swift in Sources */,
@@ -306,6 +316,7 @@
 				8707306C2B9B7060002D5E1F /* DatabaseManager.swift in Sources */,
 				870730552B9B58D9002D5E1F /* MovieDetailsViewModel.swift in Sources */,
 				870730532B9B58D4002D5E1F /* MoviesListViewModel.swift in Sources */,
+				870730752B9B9242002D5E1F /* MovieDetailsRepository.swift in Sources */,
 				870730632B9B606B002D5E1F /* MovieDetailsResponse.swift in Sources */,
 				8707304D2B9B57B9002D5E1F /* AlamofireNetworkManager.swift in Sources */,
 				870730512B9B58C8002D5E1F /* MovieDetailsView.swift in Sources */,
@@ -314,6 +325,7 @@
 				870730292B9B556A002D5E1F /* TMDB_SwiftUIApp.swift in Sources */,
 				870730592B9B5C47002D5E1F /* MoviesEndpoint.swift in Sources */,
 				8707306E2B9B7171002D5E1F /* PopularMovieCellView.swift in Sources */,
+				870730772B9B93DD002D5E1F /* ErrorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

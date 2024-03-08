@@ -14,7 +14,10 @@ struct MoviesListViews: View {
         NavigationView {
             VStack {
                 List(viewModel.moviesList) { movie in
-                    PopularMovieCellView(movie: movie)
+                    let movieDetailsViewModel = MovieDetailsViewModel(movieID: movie.id)
+                    NavigationLink(destination: MovieDetailsView(viewModel: movieDetailsViewModel)) {
+                        PopularMovieCellView(movie: movie)
+                    }
                 }
             }
             .navigationTitle("The Movie Database")

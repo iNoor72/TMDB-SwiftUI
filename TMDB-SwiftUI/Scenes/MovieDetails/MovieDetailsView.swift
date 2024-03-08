@@ -8,11 +8,32 @@
 import SwiftUI
 
 struct MovieDetailsView: View {
+    @StateObject var viewModel: MovieDetailsViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Image(systemName: "arrow.up")
+                .resizable()
+                .scaledToFit()
+                .frame(height: 100)
+                .padding()
+            
+            HStack {
+                Text("\(viewModel.movieDetails?.tagline ?? "")")
+                Text(viewModel.movieDetails?.releaseDate ?? "")
+            }.padding()
+            
+            Text(viewModel.movieDetails?.overview ?? "")
+            
+            Spacer()
+            
+        }.navigationTitle(viewModel.movieDetails?.title ?? "")
+            .onAppear {
+                viewModel.fetchMovieDetails()
+            }
     }
 }
 
 #Preview {
-    MovieDetailsView()
+    MovieDetailsView(viewModel: MovieDetailsViewModel(movieID: 000))
 }

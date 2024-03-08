@@ -8,9 +8,30 @@
 import Foundation
 
 class MovieDetailsViewModel: ObservableObject {
-    var movieID: String
+    var movieID: Int {
+        didSet {
+            fetchMovieDetails()
+        }
+    }
     
-    init(movieID: String) {
+    private var interactor: MovieDetailsInteractorProtocol
+    @Published var movieDetails: MovieDetailsResponse?
+    
+    init(movieID: Int, interactor: MovieDetailsInteractorProtocol = MovieDetailsInteractor()) {
+        self.interactor = interactor
         self.movieID = movieID
+    }
+    
+    func fetchMovieDetails() {
+        interactor.fetchMovieDetails(movieID: movieID) {[weak self] result in
+            switch result {
+            case .failure(let error):
+                //let view = ErrorView(error: error)
+                fatalError()
+                
+            case .success(let response):
+                self?.movieDetails = response
+            }
+        }
     }
 }

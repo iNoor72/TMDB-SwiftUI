@@ -19,10 +19,6 @@ extension MoviesEndpoint: Endpoint {
         return url
     }
     
-    var requestURL: URL {
-        baseURL.appendingPathExtension(path)
-    }
-    
     var path: String {
         switch self {
         case .movieDetails(let movieID):

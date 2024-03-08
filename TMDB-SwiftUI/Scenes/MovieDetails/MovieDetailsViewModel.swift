@@ -7,6 +7,10 @@
 
 import Foundation
 
-@Observable
-class MovieDetailsViewModel {
+class MovieDetailsViewModel: ObservableObject {
+    var movieID: String
+    
+    init(movieID: String) {
+        self.movieID = movieID
+    }
 }

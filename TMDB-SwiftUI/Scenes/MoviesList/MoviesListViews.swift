@@ -11,13 +11,16 @@ struct MoviesListViews: View {
     @StateObject private var viewModel = MoviesListViewModel()
 
     var body: some View {
-        VStack {
-            List(viewModel.moviesList) { movie in
-                PopularMovieCellView(movie: movie)
+        NavigationView {
+            VStack {
+                List(viewModel.moviesList) { movie in
+                    PopularMovieCellView(movie: movie)
+                }
             }
+            .navigationTitle("The Movie Database")
+        }.onAppear {
+            viewModel.fetchMoviesFromAPI()
         }
-        .navigationTitle("The Movie Database")
-        .padding()
     }
 }
 

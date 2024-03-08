@@ -12,7 +12,6 @@ struct MovieDetailsResponse: Codable {
     let homepage: String
     let id: Int
     let imdbID, originalLanguage, originalTitle, overview: String
-    let popularity: Double
     let posterPath: String
     let releaseDate: String
     let revenue, runtime: Int
@@ -24,7 +23,7 @@ struct MovieDetailsResponse: Codable {
         case imdbID = "imdb_id"
         case originalLanguage = "original_language"
         case originalTitle = "original_title"
-        case overview, popularity
+        case overview
         case posterPath = "poster_path"
         case releaseDate = "release_date"
         case revenue, runtime

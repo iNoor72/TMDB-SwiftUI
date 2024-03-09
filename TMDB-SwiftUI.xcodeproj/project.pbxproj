@@ -33,6 +33,9 @@
 		870730732B9B9239002D5E1F /* MovieDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870730722B9B9239002D5E1F /* MovieDetailsInteractor.swift */; };
 		870730752B9B9242002D5E1F /* MovieDetailsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870730742B9B9242002D5E1F /* MovieDetailsRepository.swift */; };
 		870730772B9B93DD002D5E1F /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870730762B9B93DD002D5E1F /* ErrorView.swift */; };
+		8707307F2B9C9011002D5E1F /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8707307E2B9C9011002D5E1F /* Double.swift */; };
+		870730822B9C91BB002D5E1F /* CacheAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870730812B9C91BB002D5E1F /* CacheAsyncImage.swift */; };
+		870730852B9CA13F002D5E1F /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 870730842B9CA13F002D5E1F /* Reachability */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +64,8 @@
 		870730722B9B9239002D5E1F /* MovieDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsInteractor.swift; sourceTree = "<group>"; };
 		870730742B9B9242002D5E1F /* MovieDetailsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsRepository.swift; sourceTree = "<group>"; };
 		870730762B9B93DD002D5E1F /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		8707307E2B9C9011002D5E1F /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		870730812B9C91BB002D5E1F /* CacheAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheAsyncImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +74,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				870730402B9B565F002D5E1F /* Alamofire in Frameworks */,
+				870730852B9CA13F002D5E1F /* Reachability in Frameworks */,
 				870730422B9B565F002D5E1F /* AlamofireDynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,6 +101,7 @@
 		870730272B9B556A002D5E1F /* TMDB-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				8707307D2B9C8FFD002D5E1F /* Extensions */,
 				8707305F2B9B5F79002D5E1F /* Models */,
 				870730392B9B5590002D5E1F /* Utilities */,
 				870730372B9B5573002D5E1F /* Core */,
@@ -165,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				8707306D2B9B7171002D5E1F /* PopularMovieCellView.swift */,
+				870730812B9C91BB002D5E1F /* CacheAsyncImage.swift */,
 				870730762B9B93DD002D5E1F /* ErrorView.swift */,
 			);
 			path = CommonViews;
@@ -227,6 +235,14 @@
 			path = Database;
 			sourceTree = "<group>";
 		};
+		8707307D2B9C8FFD002D5E1F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8707307E2B9C9011002D5E1F /* Double.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -246,6 +262,7 @@
 			packageProductDependencies = (
 				8707303F2B9B565F002D5E1F /* Alamofire */,
 				870730412B9B565F002D5E1F /* AlamofireDynamic */,
+				870730842B9CA13F002D5E1F /* Reachability */,
 			);
 			productName = "TMDB-SwiftUI";
 			productReference = 870730252B9B556A002D5E1F /* TMDB-SwiftUI.app */;
@@ -277,6 +294,7 @@
 			mainGroup = 8707301C2B9B556A002D5E1F;
 			packageReferences = (
 				8707303E2B9B565F002D5E1F /* XCRemoteSwiftPackageReference "Alamofire" */,
+				870730832B9CA13F002D5E1F /* XCRemoteSwiftPackageReference "Reachability" */,
 			);
 			productRefGroup = 870730262B9B556A002D5E1F /* Products */;
 			projectDirPath = "";
@@ -314,7 +332,9 @@
 				870730612B9B5F8A002D5E1F /* PopularMovieResponse.swift in Sources */,
 				870730462B9B56C9002D5E1F /* APIConstants.swift in Sources */,
 				8707306C2B9B7060002D5E1F /* DatabaseManager.swift in Sources */,
+				870730822B9C91BB002D5E1F /* CacheAsyncImage.swift in Sources */,
 				870730552B9B58D9002D5E1F /* MovieDetailsViewModel.swift in Sources */,
+				8707307F2B9C9011002D5E1F /* Double.swift in Sources */,
 				870730532B9B58D4002D5E1F /* MoviesListViewModel.swift in Sources */,
 				870730752B9B9242002D5E1F /* MovieDetailsRepository.swift in Sources */,
 				870730632B9B606B002D5E1F /* MovieDetailsResponse.swift in Sources */,
@@ -541,6 +561,14 @@
 				minimumVersion = 5.9.0;
 			};
 		};
+		870730832B9CA13F002D5E1F /* XCRemoteSwiftPackageReference "Reachability" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tonymillion/Reachability";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -553,6 +581,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8707303E2B9B565F002D5E1F /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = AlamofireDynamic;
+		};
+		870730842B9CA13F002D5E1F /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 870730832B9CA13F002D5E1F /* XCRemoteSwiftPackageReference "Reachability" */;
+			productName = Reachability;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

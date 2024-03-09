@@ -10,6 +10,13 @@ import Alamofire
 
 enum NetworkErrors: Error {
     case urlRequestConstructionError
+    
+    var description: String {
+        switch self {
+        case .urlRequestConstructionError:
+            return "There was an error getting data from URL. Please try again later."
+        }
+    }
 }
 
 final class AlamofireNetworkManager: NetworkServiceProtocol {

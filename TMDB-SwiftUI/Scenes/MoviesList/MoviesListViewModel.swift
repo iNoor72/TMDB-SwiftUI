@@ -9,7 +9,7 @@ import Foundation
 
 class MoviesListViewModel: ObservableObject {
     @Published var moviesList: [Movie] = []
-    @Published var showError: (Bool, Error?) = (false, nil)
+    @Published var showError: (isThereError: Bool, error: Error?) = (false, nil)
     var hasMoreRows = true
     var page = 1
     var totalPages = 1

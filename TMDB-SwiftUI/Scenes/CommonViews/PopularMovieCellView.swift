@@ -12,13 +12,30 @@ struct PopularMovieCellView: View {
     
     var body: some View {
         HStack {
-            Image(systemName: "arrow.up")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 100, height: 100)
-                .cornerRadius(4.0)
-            
-            VStack {
+            CacheAsyncImage(url: URL(string: APIConstants.imagesBaseURL.appending(movie?.backdropPath ?? "")), content: { phase in
+                switch phase {
+                case .empty:
+                    ProgressView()
+                    
+                case .success(let image):
+                    image
+                        .resizable()
+                        .scaledToFit()
+                    
+                case .failure(let error):
+                    Image(AppConstants.imagePlaceholderName)
+                        .resizable()
+                        .scaledToFit()
+                    
+                @unknown default:
+                    Image(AppConstants.imagePlaceholderName)
+                        .resizable()
+                        .scaledToFit()
+                }
+            })
+            .frame(width: 200, height: 200)
+                        
+            VStack(alignment: .center, spacing: 2) {
                 Text(movie?.title ?? "")
             }
         }

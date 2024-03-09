@@ -12,19 +12,41 @@ struct MovieDetailsView: View {
     
     var body: some View {
         VStack {
-            Image(systemName: "arrow.up")
-                .resizable()
-                .scaledToFit()
-                .frame(height: 100)
-                .padding()
+            CacheAsyncImage(url: URL(string: APIConstants.imagesBaseURL.appending(viewModel.movieDetails?.backdropPath ?? "")), content: { phase in
+                switch phase {
+                case .empty:
+                    ProgressView()
+                    
+                case .success(let image):
+                    image
+                        .resizable()
+                        .scaledToFit()
+                    
+                case .failure(let error):
+                    Image(AppConstants.imagePlaceholderName)
+                        .resizable()
+                        .scaledToFit()
+                    
+                @unknown default:
+                    Image(AppConstants.imagePlaceholderName)
+                        .resizable()
+                        .scaledToFit()
+                }
+            })
+            .frame(height: 150)
             
-            HStack {
-                Text("\(viewModel.movieDetails?.tagline ?? "")")
-                Text(viewModel.movieDetails?.releaseDate ?? "")
-            }.padding()
+            Text(viewModel.movieDetails?.title ?? "")
+                .font(.headline)
+                .bold()
             
+            Text("\(viewModel.movieDetails?.tagline ?? "")")
+            Text("Released at: " + (viewModel.movieDetails?.releaseDate ?? ""))
             Text(viewModel.movieDetails?.overview ?? "")
                 .padding()
+            
+            Divider()
+            
+            
             
             Spacer()
             

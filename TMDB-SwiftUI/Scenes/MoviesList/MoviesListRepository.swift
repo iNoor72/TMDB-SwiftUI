@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Reachability
 
 protocol MoviesListRepositoryProtocol {
     func fetchPopularMovies(page: Int, completion: @escaping (Result<PopularMovieResponse, Error>) -> ())

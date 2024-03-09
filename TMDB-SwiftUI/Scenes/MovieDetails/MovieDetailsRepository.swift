@@ -26,7 +26,7 @@ final class MovieDetailsRepository: MovieDetailsRepositoryProtocol {
         networkService.fetch(endpoint: endpoint, expectedType: MovieDetailsResponse.self) {[weak self] result in
             switch result {
             case .failure(let error):
-                guard let response = self?.handleDataResponse() else {
+                guard let response = self?.handleDataResponse(movieID: movieID) else {
                     completion(.failure(error))
                     return
                 }
@@ -40,10 +40,12 @@ final class MovieDetailsRepository: MovieDetailsRepositoryProtocol {
         }
     }
     
-    private func handleDataResponse() -> MovieDetailsResponse? {
+    private func handleDataResponse(movieID: Int) -> MovieDetailsResponse? {
         var response: MovieDetailsResponse? = nil
-        guard let fetchRequest = MovieDetailsResponse.fetchRequest() as? NSFetchRequest<NSManagedObject> else { return nil }
-        if let firstResponse = database.fetch(request: fetchRequest)?.first as? MovieDetailsResponse {
+        let fetchRequest = MovieDetailsResponse.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", NSNumber(value: movieID))
+        
+        if let firstResponse = database.fetchMovieDetailsResponses(request: fetchRequest)?.first {
             response = firstResponse
         }
         return response

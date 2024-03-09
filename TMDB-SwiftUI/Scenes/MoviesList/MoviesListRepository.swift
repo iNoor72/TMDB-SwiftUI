@@ -47,8 +47,8 @@ final class MoviesListRepository: MoviesListRepositoryProtocol {
     
     private func handleDataResponse() -> PopularMovieResponse? {
         var response: PopularMovieResponse? = nil
-        guard let fetchRequest = PopularMovieResponse.fetchRequest() as? NSFetchRequest<NSManagedObject> else { return nil }
-        if let firstResponse = database.fetch(request: fetchRequest)?.first as? PopularMovieResponse {
+        let fetchRequest = PopularMovieResponse.fetchRequest()
+        if let firstResponse = database.fetchPopularMovieResponses(request: fetchRequest)?.first {
             response = firstResponse
         }
         return response

@@ -10,7 +10,11 @@ import Foundation
 class MoviesListViewModel: ObservableObject {
     @Published var thrownError: Error? = nil
     @Published var showAlert = false
-    @Published var movieViewItems: [MovieViewItem] = []
+    @Published var movieViewItems: [MovieViewItem] = [] {
+        didSet {
+            print(movieViewItems)
+        }
+    }
     @Published var moviesList: [Movie] = [] {
         didSet {
             handleMovieViewItems()

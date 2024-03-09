@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MoviesListViews: View {
     @StateObject private var viewModel = MoviesListViewModel()
+    @State var showError = false
 
     var body: some View {
         NavigationView {
@@ -17,7 +18,9 @@ struct MoviesListViews: View {
                     ForEach(viewModel.moviesList, id: \.self) { movie in
                         let movieDetailsViewModel = MovieDetailsViewModel(movieID: movie.id)
                         NavigationLink(destination: MovieDetailsView(viewModel: movieDetailsViewModel)) {
-                            PopularMovieCellView(movie: movie)
+                            PopularMovieCellView(movie: movie) {
+                                self.viewModel.fetchMoviesFromAPI()
+                            }
                         }
                     }
                     
@@ -34,6 +37,11 @@ struct MoviesListViews: View {
         }.onAppear {
             viewModel.fetchMoviesFromAPI()
         }
+        .alert(isPresented: $viewModel.showAlert, content: {
+            Alert(title: Text("Error!"), message: Text("There was an error getting your data. Error: \(viewModel.thrownError?.localizedDescription ?? "")"), primaryButton: .default(Text("Retry"), action: {
+                viewModel.fetchMoviesFromAPI()
+            }), secondaryButton: .cancel())
+        })
     }
 }
 

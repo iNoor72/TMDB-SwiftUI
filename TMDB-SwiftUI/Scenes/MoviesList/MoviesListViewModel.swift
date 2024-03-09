@@ -9,7 +9,8 @@ import Foundation
 
 class MoviesListViewModel: ObservableObject {
     @Published var moviesList: [Movie] = []
-    @Published var showError: (isThereError: Bool, error: Error?) = (false, nil)
+    @Published var thrownError: Error? = nil
+    @Published var showAlert = false
     var hasMoreRows = true
     var page = 1
     var totalPages = 1
@@ -29,12 +30,18 @@ class MoviesListViewModel: ObservableObject {
         interactor.fetchPopularMovies(page: page) {[weak self] result in
             switch result {
             case .failure(let error):
-                self?.showError = (true, error)
+                self?.showAlert = true
+                self?.thrownError = error
                 
             case .success(let response):
                 self?.totalPages = response.totalPages
                 self?.moviesList.append(contentsOf: response.movies)
             }
         }
+    }
+    
+    func dismissAlert() {
+        showAlert = false
+        thrownError = nil
     }
 }

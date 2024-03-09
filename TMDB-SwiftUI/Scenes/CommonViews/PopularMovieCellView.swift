@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PopularMovieCellView: View {
     var movie: Movie?
+    var errorClosure: (() -> ())?
     
     var body: some View {
         VStack {
@@ -22,6 +23,11 @@ struct PopularMovieCellView: View {
                         .resizable()
                         .scaledToFit()
                         .cornerRadius(8.0)
+                    
+                case .failure(let error):
+                    ErrorView(error: error) {
+                        errorClosure?()
+                    }
                     
                 //Including error state
                 default:

@@ -16,6 +16,7 @@ class MovieDetailsViewModel: ObservableObject {
     
     private var interactor: MovieDetailsInteractorProtocol
     @Published var movieDetails: MovieDetailsResponse?
+    @Published var showError: (isThereError: Bool, error: Error?) = (false, nil)
     
     init(movieID: Int, interactor: MovieDetailsInteractorProtocol = MovieDetailsInteractor()) {
         self.interactor = interactor
@@ -26,8 +27,7 @@ class MovieDetailsViewModel: ObservableObject {
         interactor.fetchMovieDetails(movieID: movieID) {[weak self] result in
             switch result {
             case .failure(let error):
-                //let view = ErrorView(error: error)
-                fatalError()
+                self?.showError = (true, error)
                 
             case .success(let response):
                 self?.movieDetails = response

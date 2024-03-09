@@ -9,17 +9,22 @@ import SwiftUI
 
 struct ErrorView: View {
     var error: Error?
+    var closure: (() -> ())?
     
     var body: some View {
         VStack {
             Image(systemName: "exclamationmark.triangle.fill")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 200, height: 200)
+                .frame(width: 100, height: 100)
                 .foregroundColor(.red)
                 .padding()
             
             Text(error?.localizedDescription ?? "Oops! Something wrong happened")
+            
+            Button("Try again") {
+                closure?()
+            }
         }
     }
 }

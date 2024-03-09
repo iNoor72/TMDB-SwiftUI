@@ -37,6 +37,7 @@
 		870730822B9C91BB002D5E1F /* CacheAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870730812B9C91BB002D5E1F /* CacheAsyncImage.swift */; };
 		870730852B9CA13F002D5E1F /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 870730842B9CA13F002D5E1F /* Reachability */; };
 		870730872B9CA9CB002D5E1F /* ProductComapnyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870730862B9CA9CB002D5E1F /* ProductComapnyView.swift */; };
+		870730892B9CCC2B002D5E1F /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 870730882B9CCC2B002D5E1F /* Reachability */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				870730402B9B565F002D5E1F /* Alamofire in Frameworks */,
+				870730892B9CCC2B002D5E1F /* Reachability in Frameworks */,
 				870730852B9CA13F002D5E1F /* Reachability in Frameworks */,
 				870730422B9B565F002D5E1F /* AlamofireDynamic in Frameworks */,
 			);
@@ -266,6 +268,7 @@
 				8707303F2B9B565F002D5E1F /* Alamofire */,
 				870730412B9B565F002D5E1F /* AlamofireDynamic */,
 				870730842B9CA13F002D5E1F /* Reachability */,
+				870730882B9CCC2B002D5E1F /* Reachability */,
 			);
 			productName = "TMDB-SwiftUI";
 			productReference = 870730252B9B556A002D5E1F /* TMDB-SwiftUI.app */;
@@ -589,6 +592,10 @@
 		870730842B9CA13F002D5E1F /* Reachability */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 870730832B9CA13F002D5E1F /* XCRemoteSwiftPackageReference "Reachability" */;
+			productName = Reachability;
+		};
+		870730882B9CCC2B002D5E1F /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
 			productName = Reachability;
 		};
 /* End XCSwiftPackageProductDependency section */

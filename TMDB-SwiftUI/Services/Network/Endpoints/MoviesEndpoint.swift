@@ -30,7 +30,7 @@ extension MoviesEndpoint: Endpoint {
     }
     
     var parameters: Alamofire.Parameters? {
-        var parameters: [String: Any] =  ["api_key": APIConstants.APIKey]
+        var parameters: [String: Any] =  ["api_key": APIConstants.APIKey, "language": "en-US"]
         switch self {
         case .popularMovies(let page):
             parameters["page"] = page

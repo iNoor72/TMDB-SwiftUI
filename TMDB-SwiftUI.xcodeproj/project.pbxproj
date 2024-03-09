@@ -175,8 +175,8 @@
 		870730442B9B566D002D5E1F /* CommonViews */ = {
 			isa = PBXGroup;
 			children = (
-				870730862B9CA9CB002D5E1F /* ProductComapnyView.swift */,
 				8707306D2B9B7171002D5E1F /* PopularMovieCellView.swift */,
+				870730862B9CA9CB002D5E1F /* ProductComapnyView.swift */,
 				870730812B9C91BB002D5E1F /* CacheAsyncImage.swift */,
 				870730762B9B93DD002D5E1F /* ErrorView.swift */,
 			);

@@ -37,7 +37,7 @@ struct PopularMovieCellView: View {
                         .cornerRadius(8.0)
                 }
             })
-            .frame(height: 250)
+            .frame(width: 200, height: 250)
             
             Text(movie?.title ?? "")
                 .bold()

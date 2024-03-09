@@ -33,17 +33,19 @@ class MoviesListViewModel: ObservableObject {
     
     func fetchMoviesFromAPI() {
         interactor.fetchPopularMovies(page: page) {[weak self] result in
+            guard let self else { return }
             switch result {
             case .failure(let error):
                 DispatchQueue.main.async {
-                    self?.showAlert = true
-                    self?.thrownError = error
+                    self.showAlert = true
+                    self.thrownError = error
                 }
                 
             case .success(let response):
                 DispatchQueue.main.async {
-                    self?.totalPages = response.totalPages
-                    self?.moviesList.append(contentsOf: response.movies)
+                    self.totalPages = response.totalPages
+                    self.moviesList.append(contentsOf: response.movies)
+                    if self.totalPages > self.page { self.hasMoreRows = true }
                 }
             }
         }

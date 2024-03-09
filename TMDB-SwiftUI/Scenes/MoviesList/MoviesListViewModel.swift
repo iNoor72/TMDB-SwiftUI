@@ -9,24 +9,32 @@ import Foundation
 
 class MoviesListViewModel: ObservableObject {
     @Published var moviesList: [Movie] = []
+    @Published var showError: (Bool, Error?) = (false, nil)
+    var hasMoreRows = true
     var page = 1
+    var totalPages = 1
     private var interactor: MoviesListInteractorProtocol
     
     init(interactor: MoviesListInteractorProtocol = MoviesListInteractor()) {
         self.interactor = interactor
     }
     
+    func loadMore() {
+        guard page < totalPages else { return }
+        page += 1
+        fetchMoviesFromAPI()
+    }
+    
     func fetchMoviesFromAPI() {
         interactor.fetchPopularMovies(page: page) {[weak self] result in
             switch result {
             case .failure(let error):
-                fatalError()
+                self?.showError = (true, error)
                 
             case .success(let response):
-                self?.moviesList = response.movies
+                self?.totalPages = response.totalPages
+                self?.moviesList.append(contentsOf: response.movies)
             }
         }
     }
-    
-    
 }

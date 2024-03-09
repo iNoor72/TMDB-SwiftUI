@@ -25,7 +25,7 @@ final class MoviesListInteractor: MoviesListInteractorProtocol {
     }
     
     func fetchPopularMovies(page: Int = 1, completion: @escaping (Result<PopularMovieResponse, Error>) -> ()) {
-        repository.fetchPopularMovies(page: 1) { result in
+        repository.fetchPopularMovies(page: page) { result in
             switch result {
             case .failure(let error):
                 completion(.failure(error))

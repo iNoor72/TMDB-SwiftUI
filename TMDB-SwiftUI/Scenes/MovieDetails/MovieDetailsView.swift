@@ -24,6 +24,7 @@ struct MovieDetailsView: View {
             }.padding()
             
             Text(viewModel.movieDetails?.overview ?? "")
+                .padding()
             
             Spacer()
             

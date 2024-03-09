@@ -13,10 +13,20 @@ struct MoviesListViews: View {
     var body: some View {
         NavigationView {
             VStack {
-                List(viewModel.moviesList) { movie in
-                    let movieDetailsViewModel = MovieDetailsViewModel(movieID: movie.id)
-                    NavigationLink(destination: MovieDetailsView(viewModel: movieDetailsViewModel)) {
-                        PopularMovieCellView(movie: movie)
+                List {
+                    ForEach(viewModel.moviesList, id: \.self) { movie in
+                        let movieDetailsViewModel = MovieDetailsViewModel(movieID: movie.id)
+                        NavigationLink(destination: MovieDetailsView(viewModel: movieDetailsViewModel)) {
+                            PopularMovieCellView(movie: movie)
+                        }
+                    }
+                    
+                    
+                    if viewModel.hasMoreRows {
+                        Text("Fetching more movies...")
+                            .onAppear(perform: {
+                                self.viewModel.loadMore()
+                            })
                     }
                 }
             }

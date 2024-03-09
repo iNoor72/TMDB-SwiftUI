@@ -22,14 +22,26 @@ final class MoviesListRepository: MoviesListRepositoryProtocol {
     
     func fetchPopularMovies(page: Int = 1, completion: @escaping (Result<PopularMovieResponse, Error>) -> ()) {
         let endpoint = MoviesEndpoint.popularMovies(page: page)
-        networkService.fetch(endpoint: endpoint, expectedType: PopularMovieResponse.self) { result in
+        networkService.fetch(endpoint: endpoint, expectedType: PopularMovieResponse.self) {[weak self] result in
             switch result {
             case .failure(let error):
-                completion(.failure(error))
+                guard let response = self?.handleDataResponse(), !response.movies.isEmpty else {
+                    completion(.failure(error))
+                    return
+                }
+                
+                completion(.success(response))
                 
             case .success(let response):
+                //save to DB
                 completion(.success(response))
             }
         }
+    }
+    
+    private func handleDataResponse() -> PopularMovieResponse? {
+        var response: PopularMovieResponse? = nil
+            //Check if there's something in DB
+        return response
     }
 }

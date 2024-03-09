@@ -29,6 +29,7 @@ class MovieDetailsViewModel: ObservableObject {
     }
     
     private func handleProductionComapnyViewItem() {
+        productionCompanies = []
         guard let productionCompaniesArray = movieDetails?.productionCompanies?.allObjects as? [ProductionCompany] else { return }
         for company in productionCompaniesArray {
             guard let productionCompanyViewItem = interactor.productionCompanyViewItem(company: company) else { continue }

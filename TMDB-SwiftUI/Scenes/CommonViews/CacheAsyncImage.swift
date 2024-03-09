@@ -14,7 +14,7 @@ struct CacheAsyncImage<Content>: View where Content: View {
     private let transaction: Transaction
     private let content: (AsyncImagePhase) -> Content
     private let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
-    @State private var timeRemaining = 10
+    @State private var trialsCounter = 3
 
     init(
         url: URL?,
@@ -40,7 +40,7 @@ struct CacheAsyncImage<Content>: View where Content: View {
                 scale: scale,
                 transaction: transaction
             ) { phase in
-                if timeRemaining <= 0 {
+                if trialsCounter <= 0 {
                     Image(AppConstants.imagePlaceholderName)
                         .resizable()
                         .scaledToFit()
@@ -49,8 +49,8 @@ struct CacheAsyncImage<Content>: View where Content: View {
                     cacheAndRender(phase: phase)
                 }
             }.onReceive(timer) { _ in
-                if timeRemaining > 0 {
-                    timeRemaining -= 1
+                if trialsCounter > 0 {
+                    trialsCounter -= 1
                 } else {
                     timer.upstream.connect().cancel()
                 }

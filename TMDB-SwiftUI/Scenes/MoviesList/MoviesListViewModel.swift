@@ -10,11 +10,7 @@ import Foundation
 class MoviesListViewModel: ObservableObject {
     @Published var thrownError: LocalizedNetworkErrors?
     @Published var showAlert = false
-    @Published var movieViewItems: [MovieViewItem] = [] {
-        didSet {
-            print(movieViewItems)
-        }
-    }
+    @Published var movieViewItems: [MovieViewItem] = []
     @Published var moviesList: [Movie] = [] {
         didSet {
             handleMovieViewItems()

@@ -9,42 +9,55 @@ import SwiftUI
 import Alamofire
 
 struct MoviesListViews: View {
+    @EnvironmentObject var networkMonitor: NetworkMonitor
     @StateObject private var viewModel = MoviesListViewModel()
     @State var showError = false
 
     var body: some View {
-        NavigationView {
-            VStack {
-                List {
-                    ForEach(viewModel.movieViewItems, id: \.self) { movie in
-                        let movieDetailsViewModel = MovieDetailsViewModel(movieID: movie.id)
-                        NavigationLink(destination: MovieDetailsView(viewModel: movieDetailsViewModel)) {
-                            PopularMovieCellView(movie: movie) {
-                                self.viewModel.fetchMoviesFromAPI()
+        if !networkMonitor.isConnected {
+            ErrorView(error: viewModel.thrownError) {
+                viewModel.resetError()
+                viewModel.fetchMoviesFromAPI()
+            }
+        } else {
+            NavigationView {
+                VStack {
+                    List {
+                        ForEach(viewModel.movieViewItems, id: \.self) { movie in
+                            let movieDetailsViewModel = MovieDetailsViewModel(movieID: movie.id)
+                            NavigationLink(destination: MovieDetailsView(viewModel: movieDetailsViewModel)) {
+                                PopularMovieCellView(movie: movie) {
+                                    self.viewModel.fetchMoviesFromAPI()
+                                }
                             }
                         }
-                    }
-                    
-                    if let reachability = NetworkReachabilityManager(), reachability.isReachable {
                         
-                    }
-                    
-                    if viewModel.hasMoreRows, let reachability = NetworkReachabilityManager(), reachability.isReachable {
-                        Text("Fetching more movies...")
-                            .onAppear(perform: {
-                                self.viewModel.loadMore()
-                            })
+                        if let reachability = NetworkReachabilityManager(), reachability.isReachable {
+                            
+                        }
+                        
+                        if viewModel.hasMoreRows, let reachability = NetworkReachabilityManager(), reachability.isReachable {
+                            Text("Fetching more movies...")
+                                .onAppear(perform: {
+                                    self.viewModel.loadMore()
+                                })
+                        }
                     }
                 }
-            }
-            .navigationTitle("The Movie Database")
-            .alert(isPresented: $viewModel.showAlert, error: viewModel.thrownError) {
-                Button("Retry") {
+                .navigationTitle("The Movie Database")
+                .onChange(of: networkMonitor.isConnected) {
                     viewModel.resetError()
                     viewModel.fetchMoviesFromAPI()
+                    
                 }
-                
-                Button("Cancel") { }
+                .alert(isPresented: $viewModel.showAlert, error: viewModel.thrownError) {
+                    Button("Retry") {
+                        viewModel.resetError()
+                        viewModel.fetchMoviesFromAPI()
+                    }
+                    
+                    Button("Cancel") { }
+                }
             }
         }
     }

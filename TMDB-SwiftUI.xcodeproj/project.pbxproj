@@ -50,6 +50,7 @@
 		8798C3782B9D0F20005597D0 /* NetworkErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8798C3772B9D0F20005597D0 /* NetworkErrors.swift */; };
 		8798C37A2B9D0F3A005597D0 /* LocalizedNetworkErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8798C3792B9D0F3A005597D0 /* LocalizedNetworkErrors.swift */; };
 		8798C37C2B9D14E8005597D0 /* LocalizedFetchingErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8798C37B2B9D14E8005597D0 /* LocalizedFetchingErrors.swift */; };
+		8798C37E2B9D288C005597D0 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8798C37D2B9D288C005597D0 /* NetworkMonitor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +94,7 @@
 		8798C3772B9D0F20005597D0 /* NetworkErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrors.swift; sourceTree = "<group>"; };
 		8798C3792B9D0F3A005597D0 /* LocalizedNetworkErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedNetworkErrors.swift; sourceTree = "<group>"; };
 		8798C37B2B9D14E8005597D0 /* LocalizedFetchingErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedFetchingErrors.swift; sourceTree = "<group>"; };
+		8798C37D2B9D288C005597D0 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,6 +298,7 @@
 				8798C3772B9D0F20005597D0 /* NetworkErrors.swift */,
 				8798C3792B9D0F3A005597D0 /* LocalizedNetworkErrors.swift */,
 				8798C37B2B9D14E8005597D0 /* LocalizedFetchingErrors.swift */,
+				8798C37D2B9D288C005597D0 /* NetworkMonitor.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				8707306E2B9B7171002D5E1F /* PopularMovieCellView.swift in Sources */,
 				8798C37C2B9D14E8005597D0 /* LocalizedFetchingErrors.swift in Sources */,
 				8798C37A2B9D0F3A005597D0 /* LocalizedNetworkErrors.swift in Sources */,
+				8798C37E2B9D288C005597D0 /* NetworkMonitor.swift in Sources */,
 				8798C3732B9CEFE4005597D0 /* ProductionCompany+CoreDataProperties.swift in Sources */,
 				870730772B9B93DD002D5E1F /* ErrorView.swift in Sources */,
 			);

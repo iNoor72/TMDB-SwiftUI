@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 protocol MoviesListRepositoryProtocol {
     func fetchPopularMovies(page: Int, completion: @escaping (Result<PopularMovieResponse, Error>) -> ())
@@ -28,7 +29,8 @@ final class MoviesListRepository: MoviesListRepositoryProtocol {
                 guard
                     let response = self?.handleDataResponse(),
                     let moviesArray = response.movies?.allObjects,
-                    !moviesArray.isEmpty
+                    !moviesArray.isEmpty,
+                    page == 1
                 else {
                     completion(.failure(error))
                     return
@@ -37,7 +39,6 @@ final class MoviesListRepository: MoviesListRepositoryProtocol {
                 completion(.success(response))
                 
             case .success(let response):
-                //save to DB
                 self?.database.save(object: response)
                 completion(.success(response))
             }
@@ -46,9 +47,10 @@ final class MoviesListRepository: MoviesListRepositoryProtocol {
     
     private func handleDataResponse() -> PopularMovieResponse? {
         var response: PopularMovieResponse? = nil
-            //Check if there's something in DB
-        let fetchRequest = PopularMovieResponse.fetchRequest()
-//        database.fetch(request: fetchRequest)
+        guard let fetchRequest = PopularMovieResponse.fetchRequest() as? NSFetchRequest<NSManagedObject> else { return nil }
+        if let firstResponse = database.fetch(request: fetchRequest)?.first as? PopularMovieResponse {
+            response = firstResponse
+        }
         return response
     }
 }

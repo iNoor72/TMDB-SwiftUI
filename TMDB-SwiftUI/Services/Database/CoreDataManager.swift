@@ -60,9 +60,17 @@ final class CoreDataManager {
 
 extension CoreDataManager: DatabaseProtocol {
     func save(object: NSManagedObject) {
+        let objects = self.managedObjectContext.insertedObjects.filter { $0.entity == object.entity }
+        guard objects.contains(object) else { return }
+        
         managedObjectContext.perform { [weak self] in
             self?.managedObjectContext.insert(object)
             try? self?.managedObjectContext.save()
         }
+    }
+    
+    func fetch(request: NSFetchRequest<NSManagedObject>) -> [NSManagedObject]? {
+        let objects = try? self.managedObjectContext.fetch(request)
+        return objects
     }
 }

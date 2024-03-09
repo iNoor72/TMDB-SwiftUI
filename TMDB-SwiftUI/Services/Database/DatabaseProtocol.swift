@@ -10,5 +10,5 @@ import CoreData
 
 protocol DatabaseProtocol {
     func save(object: NSManagedObject)
-//    func fetch(request: NSFetchRequest<NSFetchRequestResult>) -> NSManagedObject?
+    func fetch(request: NSFetchRequest<NSManagedObject>) -> [NSManagedObject]?
 }

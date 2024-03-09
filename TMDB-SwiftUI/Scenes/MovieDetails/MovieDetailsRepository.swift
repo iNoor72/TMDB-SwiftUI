@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 protocol MovieDetailsRepositoryProtocol {
     func fetchMovieDetails(movieID: Int, completion: @escaping (Result<MovieDetailsResponse, Error>) -> ())
@@ -33,7 +34,7 @@ final class MovieDetailsRepository: MovieDetailsRepositoryProtocol {
                 completion(.success(response))
                 
             case .success(let response):
-                //save to DB
+                self?.database.save(object: response)
                 completion(.success(response))
             }
         }
@@ -41,7 +42,10 @@ final class MovieDetailsRepository: MovieDetailsRepositoryProtocol {
     
     private func handleDataResponse() -> MovieDetailsResponse? {
         var response: MovieDetailsResponse? = nil
-            //Check if there's something in DB
+        guard let fetchRequest = MovieDetailsResponse.fetchRequest() as? NSFetchRequest<NSManagedObject> else { return nil }
+        if let firstResponse = database.fetch(request: fetchRequest)?.first as? MovieDetailsResponse {
+            response = firstResponse
+        }
         return response
     }
 }

@@ -24,6 +24,7 @@ class MoviesListViewModel: ObservableObject {
     
     init(interactor: MoviesListInteractorProtocol = MoviesListInteractor()) {
         self.interactor = interactor
+        fetchMoviesFromAPI()
     }
     
     private func handleMovieViewItems() {
@@ -59,7 +60,9 @@ class MoviesListViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     guard let movies = response.movies?.allObjects as? [Movie] else { return }
                     self.totalPages = Int(response.totalPages)
-                    self.moviesList.append(contentsOf: movies)
+                    self.moviesList.append(contentsOf: movies.sorted(by: {
+                        $0.releaseDate ?? "" > $1.releaseDate ?? ""
+                    }))
                     if self.totalPages > self.page { self.hasMoreRows = true }
                 }
             }

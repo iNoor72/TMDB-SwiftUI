@@ -21,10 +21,6 @@ struct ErrorView: View {
                 .padding()
             
             Text(error?.localizedDescription ?? "Oops! Something wrong happened")
-            
-            Button("Try again") {
-                closure?()
-            }
         }
     }
 }

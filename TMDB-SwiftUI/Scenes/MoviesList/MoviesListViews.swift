@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Alamofire
 
 struct MoviesListViews: View {
     @StateObject private var viewModel = MoviesListViewModel()
@@ -25,7 +26,7 @@ struct MoviesListViews: View {
                     }
                     
                     
-                    if viewModel.hasMoreRows {
+                    if viewModel.hasMoreRows, let reachability = NetworkReachabilityManager(), reachability.isReachable {
                         Text("Fetching more movies...")
                             .onAppear(perform: {
                                 self.viewModel.loadMore()
@@ -34,8 +35,6 @@ struct MoviesListViews: View {
                 }
             }
             .navigationTitle("The Movie Database")
-        }.onAppear {
-            viewModel.fetchMoviesFromAPI()
         }
         .alert(isPresented: $viewModel.showAlert, content: {
             Alert(title: Text("Error!"), message: Text("There was an error getting your data. Error: \(viewModel.thrownError?.localizedDescription ?? "")"), primaryButton: .default(Text("Retry"), action: {

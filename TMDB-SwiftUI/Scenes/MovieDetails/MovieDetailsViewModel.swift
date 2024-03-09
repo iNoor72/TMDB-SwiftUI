@@ -27,10 +27,14 @@ class MovieDetailsViewModel: ObservableObject {
         interactor.fetchMovieDetails(movieID: movieID) {[weak self] result in
             switch result {
             case .failure(let error):
-                self?.showError = (true, error)
+                DispatchQueue.main.async {
+                    self?.showError = (true, error)
+                }
                 
             case .success(let response):
-                self?.movieDetails = response
+                DispatchQueue.main.async {
+                    self?.movieDetails = response
+                }
             }
         }
     }

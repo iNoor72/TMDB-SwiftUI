@@ -11,7 +11,7 @@ class MoviesListViewModel: ObservableObject {
     @Published var moviesList: [Movie] = []
     @Published var thrownError: Error? = nil
     @Published var showAlert = false
-    var hasMoreRows = true
+    var hasMoreRows = false
     var page = 1
     var totalPages = 1
     private var interactor: MoviesListInteractorProtocol
@@ -21,7 +21,12 @@ class MoviesListViewModel: ObservableObject {
     }
     
     func loadMore() {
-        guard page < totalPages else { return }
+        guard page < totalPages else {
+            hasMoreRows = false
+            return
+        }
+        
+        hasMoreRows = true
         page += 1
         fetchMoviesFromAPI()
     }
@@ -30,17 +35,21 @@ class MoviesListViewModel: ObservableObject {
         interactor.fetchPopularMovies(page: page) {[weak self] result in
             switch result {
             case .failure(let error):
-                self?.showAlert = true
-                self?.thrownError = error
+                DispatchQueue.main.async {
+                    self?.showAlert = true
+                    self?.thrownError = error
+                }
                 
             case .success(let response):
-                self?.totalPages = response.totalPages
-                self?.moviesList.append(contentsOf: response.movies)
+                DispatchQueue.main.async {
+                    self?.totalPages = response.totalPages
+                    self?.moviesList.append(contentsOf: response.movies)
+                }
             }
         }
     }
     
-    func dismissAlert() {
+    func resetError() {
         showAlert = false
         thrownError = nil
     }

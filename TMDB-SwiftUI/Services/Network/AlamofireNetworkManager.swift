@@ -12,7 +12,7 @@ enum NetworkErrors: Error {
     case urlRequestConstructionError
     case noInternet
     
-    var description: String {
+    var localizedDescription: String {
         switch self {
         case .urlRequestConstructionError:
             return "There was an error getting data from URL. Please try again later."
@@ -24,6 +24,11 @@ enum NetworkErrors: Error {
 
 final class AlamofireNetworkManager: NetworkServiceProtocol {
     func fetch<U: Endpoint, T: Decodable>(endpoint: U, expectedType: T.Type, completion: @escaping (Result<T, Error>) -> ()) {
+        guard let reachability = NetworkReachabilityManager(), reachability.isReachable else {
+            completion(.failure(NetworkErrors.noInternet))
+            return
+        }
+        
         guard let requestURL = try? endpoint.asURLRequest() else {
             completion(.failure(NetworkErrors.urlRequestConstructionError))
             return

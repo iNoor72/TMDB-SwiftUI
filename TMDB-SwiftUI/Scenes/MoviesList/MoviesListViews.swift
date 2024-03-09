@@ -39,6 +39,7 @@ struct MoviesListViews: View {
         }
         .alert(isPresented: $viewModel.showAlert, content: {
             Alert(title: Text("Error!"), message: Text("There was an error getting your data. Error: \(viewModel.thrownError?.localizedDescription ?? "")"), primaryButton: .default(Text("Retry"), action: {
+                viewModel.resetError()
                 viewModel.fetchMoviesFromAPI()
             }), secondaryButton: .cancel())
         })

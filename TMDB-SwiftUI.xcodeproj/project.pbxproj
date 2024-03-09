@@ -36,6 +36,7 @@
 		8707307F2B9C9011002D5E1F /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8707307E2B9C9011002D5E1F /* Double.swift */; };
 		870730822B9C91BB002D5E1F /* CacheAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870730812B9C91BB002D5E1F /* CacheAsyncImage.swift */; };
 		870730852B9CA13F002D5E1F /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 870730842B9CA13F002D5E1F /* Reachability */; };
+		870730872B9CA9CB002D5E1F /* ProductComapnyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870730862B9CA9CB002D5E1F /* ProductComapnyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		870730762B9B93DD002D5E1F /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		8707307E2B9C9011002D5E1F /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		870730812B9C91BB002D5E1F /* CacheAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheAsyncImage.swift; sourceTree = "<group>"; };
+		870730862B9CA9CB002D5E1F /* ProductComapnyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductComapnyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 		870730442B9B566D002D5E1F /* CommonViews */ = {
 			isa = PBXGroup;
 			children = (
+				870730862B9CA9CB002D5E1F /* ProductComapnyView.swift */,
 				8707306D2B9B7171002D5E1F /* PopularMovieCellView.swift */,
 				870730812B9C91BB002D5E1F /* CacheAsyncImage.swift */,
 				870730762B9B93DD002D5E1F /* ErrorView.swift */,
@@ -339,6 +342,7 @@
 				870730752B9B9242002D5E1F /* MovieDetailsRepository.swift in Sources */,
 				870730632B9B606B002D5E1F /* MovieDetailsResponse.swift in Sources */,
 				8707304D2B9B57B9002D5E1F /* AlamofireNetworkManager.swift in Sources */,
+				870730872B9CA9CB002D5E1F /* ProductComapnyView.swift in Sources */,
 				870730512B9B58C8002D5E1F /* MovieDetailsView.swift in Sources */,
 				870730482B9B5742002D5E1F /* NetworkServiceProtocol.swift in Sources */,
 				8707306A2B9B6DBC002D5E1F /* DatabaseProtocol.swift in Sources */,

@@ -11,8 +11,8 @@ struct PopularMovieCellView: View {
     var movie: Movie?
     
     var body: some View {
-        HStack {
-            CacheAsyncImage(url: URL(string: APIConstants.imagesBaseURL.appending(movie?.backdropPath ?? "")), content: { phase in
+        VStack {
+            CacheAsyncImage(url: URL(string: APIConstants.imagesBaseURL.appending(movie?.posterPath ?? "")), content: { phase in
                 switch phase {
                 case .empty:
                     ProgressView()
@@ -21,23 +21,20 @@ struct PopularMovieCellView: View {
                     image
                         .resizable()
                         .scaledToFit()
+                        .cornerRadius(8.0)
                     
-                case .failure(let error):
+                //Including error state
+                default:
                     Image(AppConstants.imagePlaceholderName)
                         .resizable()
                         .scaledToFit()
-                    
-                @unknown default:
-                    Image(AppConstants.imagePlaceholderName)
-                        .resizable()
-                        .scaledToFit()
+                        .cornerRadius(8.0)
                 }
             })
-            .frame(width: 200, height: 200)
-                        
-            VStack(alignment: .center, spacing: 2) {
-                Text(movie?.title ?? "")
-            }
+            .frame(height: 250)
+            
+            Text(movie?.title ?? "")
+                .bold()
         }
     }
 }

@@ -11,22 +11,28 @@ struct MovieDetailsResponse: Codable {
     let backdropPath: String
     let homepage: String
     let id: Int
-    let imdbID, originalLanguage, originalTitle, overview: String
-    let posterPath: String
+    let overview: String
     let releaseDate: String
-    let revenue, runtime: Int
-    let status, tagline, title: String
+    let tagline, title: String
+    let productionCompanies: [ProductionCompany]?
 
     enum CodingKeys: String, CodingKey {
         case backdropPath = "backdrop_path"
         case homepage, id
-        case imdbID = "imdb_id"
-        case originalLanguage = "original_language"
-        case originalTitle = "original_title"
         case overview
-        case posterPath = "poster_path"
         case releaseDate = "release_date"
-        case revenue, runtime
-        case status, tagline, title
+        case tagline, title
+        case productionCompanies = "production_companies"
+    }
+}
+
+struct ProductionCompany: Codable, Hashable, Identifiable {
+    let id: Int
+    let logoPath: String?
+    let name: String
+    
+    enum CodingKeys: String, CodingKey {
+        case logoPath = "logo_path"
+        case id, name
     }
 }

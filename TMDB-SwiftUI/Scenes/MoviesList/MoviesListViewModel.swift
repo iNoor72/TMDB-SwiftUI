@@ -8,7 +8,7 @@
 import Foundation
 
 class MoviesListViewModel: ObservableObject {
-    @Published var thrownError: Error? = nil
+    @Published var thrownError: LocalizedNetworkErrors?
     @Published var showAlert = false
     @Published var movieViewItems: [MovieViewItem] = [] {
         didSet {
@@ -57,7 +57,17 @@ class MoviesListViewModel: ObservableObject {
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.showAlert = true
-                    self.thrownError = error
+                    let error = error as? NetworkErrors
+                    switch error {
+                    case .noInternet:
+                        self.thrownError = LocalizedNetworkErrors.noInternet
+                    case .urlRequestConstructionError:
+                        self.thrownError = LocalizedNetworkErrors.urlRequestConstructionError
+                    case .failedToFetchData:
+                        self.thrownError = LocalizedNetworkErrors.failedToFetchData
+                    case .none:
+                        return
+                    }
                 }
                 
             case .success(let response):

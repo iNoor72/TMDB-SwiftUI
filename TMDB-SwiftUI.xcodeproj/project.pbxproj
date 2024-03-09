@@ -47,6 +47,9 @@
 		8798C3732B9CEFE4005597D0 /* ProductionCompany+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8798C36B2B9CEFE4005597D0 /* ProductionCompany+CoreDataProperties.swift */; };
 		8798C3742B9CEFE4005597D0 /* PopularMovieResponse+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8798C36C2B9CEFE4005597D0 /* PopularMovieResponse+CoreDataClass.swift */; };
 		8798C3752B9CEFE4005597D0 /* PopularMovieResponse+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8798C36D2B9CEFE4005597D0 /* PopularMovieResponse+CoreDataProperties.swift */; };
+		8798C3782B9D0F20005597D0 /* NetworkErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8798C3772B9D0F20005597D0 /* NetworkErrors.swift */; };
+		8798C37A2B9D0F3A005597D0 /* LocalizedNetworkErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8798C3792B9D0F3A005597D0 /* LocalizedNetworkErrors.swift */; };
+		8798C37C2B9D14E8005597D0 /* LocalizedFetchingErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8798C37B2B9D14E8005597D0 /* LocalizedFetchingErrors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +90,9 @@
 		8798C36B2B9CEFE4005597D0 /* ProductionCompany+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductionCompany+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8798C36C2B9CEFE4005597D0 /* PopularMovieResponse+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PopularMovieResponse+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8798C36D2B9CEFE4005597D0 /* PopularMovieResponse+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PopularMovieResponse+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8798C3772B9D0F20005597D0 /* NetworkErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrors.swift; sourceTree = "<group>"; };
+		8798C3792B9D0F3A005597D0 /* LocalizedNetworkErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedNetworkErrors.swift; sourceTree = "<group>"; };
+		8798C37B2B9D14E8005597D0 /* LocalizedFetchingErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedFetchingErrors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +129,7 @@
 		870730272B9B556A002D5E1F /* TMDB-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				8798C3762B9D0F0E005597D0 /* Helpers */,
 				8707307D2B9C8FFD002D5E1F /* Extensions */,
 				8707305F2B9B5F79002D5E1F /* Responses */,
 				870730392B9B5590002D5E1F /* Utilities */,
@@ -283,6 +290,16 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		8798C3762B9D0F0E005597D0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8798C3772B9D0F20005597D0 /* NetworkErrors.swift */,
+				8798C3792B9D0F3A005597D0 /* LocalizedNetworkErrors.swift */,
+				8798C37B2B9D14E8005597D0 /* LocalizedFetchingErrors.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -380,6 +397,7 @@
 				8798C3522B9CDA43005597D0 /* TMDB.xcdatamodeld in Sources */,
 				8707307F2B9C9011002D5E1F /* Double.swift in Sources */,
 				870730532B9B58D4002D5E1F /* MoviesListViewModel.swift in Sources */,
+				8798C3782B9D0F20005597D0 /* NetworkErrors.swift in Sources */,
 				870730752B9B9242002D5E1F /* MovieDetailsRepository.swift in Sources */,
 				870730632B9B606B002D5E1F /* MovieDetailsResponse.swift in Sources */,
 				8707304D2B9B57B9002D5E1F /* AlamofireNetworkManager.swift in Sources */,
@@ -395,6 +413,8 @@
 				8798C3752B9CEFE4005597D0 /* PopularMovieResponse+CoreDataProperties.swift in Sources */,
 				870730592B9B5C47002D5E1F /* MoviesEndpoint.swift in Sources */,
 				8707306E2B9B7171002D5E1F /* PopularMovieCellView.swift in Sources */,
+				8798C37C2B9D14E8005597D0 /* LocalizedFetchingErrors.swift in Sources */,
+				8798C37A2B9D0F3A005597D0 /* LocalizedNetworkErrors.swift in Sources */,
 				8798C3732B9CEFE4005597D0 /* ProductionCompany+CoreDataProperties.swift in Sources */,
 				870730772B9B93DD002D5E1F /* ErrorView.swift in Sources */,
 			);

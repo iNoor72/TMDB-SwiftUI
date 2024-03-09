@@ -62,6 +62,14 @@ struct MovieDetailsView: View {
             .onAppear {
                 viewModel.fetchMovieDetails()
             }
+            .alert(isPresented: $viewModel.showAlert, error: viewModel.thrownError) {
+                Button("Retry") {
+                    viewModel.resetError()
+                    viewModel.fetchMovieDetails()
+                }
+                
+                Button("Cancel") { }
+            }
     }
 }
 

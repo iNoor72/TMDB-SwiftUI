@@ -46,6 +46,7 @@ extension Endpoint {
         var request = URLRequest(url: requestURL)
         request.httpMethod = method.rawValue
         request.headers = headers
+        request.timeoutInterval = 10
         return request
     }
     

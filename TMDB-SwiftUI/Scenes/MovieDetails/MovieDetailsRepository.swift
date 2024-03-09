@@ -24,9 +24,10 @@ final class MovieDetailsRepository: MovieDetailsRepositoryProtocol {
     func fetchMovieDetails(movieID: Int, completion: @escaping (Result<MovieDetailsResponse, Error>) -> ()) {
         let endpoint = MoviesEndpoint.movieDetails(movieID: movieID)
         networkService.fetch(endpoint: endpoint, expectedType: MovieDetailsResponse.self) {[weak self] result in
+            guard let self else { return }
             switch result {
             case .failure(let error):
-                guard let response = self?.handleDataResponse(movieID: movieID) else {
+                guard let response = self.handleDataResponse(movieID: movieID) else {
                     completion(.failure(error))
                     return
                 }
@@ -34,7 +35,7 @@ final class MovieDetailsRepository: MovieDetailsRepositoryProtocol {
                 completion(.success(response))
                 
             case .success(let response):
-                self?.database.save(object: response)
+                self.database.save(object: response)
                 completion(.success(response))
             }
         }

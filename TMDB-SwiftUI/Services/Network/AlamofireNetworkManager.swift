@@ -8,20 +8,6 @@
 import Foundation
 import Alamofire
 
-enum NetworkErrors: Error {
-    case urlRequestConstructionError
-    case noInternet
-    
-    var localizedDescription: String {
-        switch self {
-        case .urlRequestConstructionError:
-            return "There was an error getting data from URL. Please try again later."
-        case .noInternet:
-            return "You're offline. Please reconnect to the network."
-        }
-    }
-}
-
 final class AlamofireNetworkManager: NetworkServiceProtocol {
     func fetch<U: Endpoint, T: Decodable>(endpoint: U, expectedType: T.Type, completion: @escaping (Result<T, Error>) -> ()) {
         guard let reachability = NetworkReachabilityManager(), reachability.isReachable else {
@@ -36,8 +22,8 @@ final class AlamofireNetworkManager: NetworkServiceProtocol {
         
         AF.request(requestURL).validate().responseDecodable(queue: .global()) { (response: DataResponse<T, AFError>) in
             switch response.result {
-            case .failure(let error):
-                completion(.failure(error))
+            case .failure(_):
+                completion(.failure(NetworkErrors.failedToFetchData))
                 
             case .success(let data):
                 completion(.success(data))

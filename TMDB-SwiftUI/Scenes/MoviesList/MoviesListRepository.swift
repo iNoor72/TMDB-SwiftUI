@@ -24,10 +24,11 @@ final class MoviesListRepository: MoviesListRepositoryProtocol {
     func fetchPopularMovies(page: Int = 1, completion: @escaping (Result<PopularMovieResponse, Error>) -> ()) {
         let endpoint = MoviesEndpoint.popularMovies(page: page)
         networkService.fetch(endpoint: endpoint, expectedType: PopularMovieResponse.self) {[weak self] result in
+            guard let self else { return }
             switch result {
             case .failure(let error):
                 guard
-                    let response = self?.handleDataResponse(),
+                    let response = self.handleDataResponse(),
                     let moviesArray = response.movies?.allObjects,
                     !moviesArray.isEmpty,
                     page == 1
@@ -39,7 +40,7 @@ final class MoviesListRepository: MoviesListRepositoryProtocol {
                 completion(.success(response))
                 
             case .success(let response):
-                self?.database.save(object: response)
+                self.database.save(object: response)
                 completion(.success(response))
             }
         }

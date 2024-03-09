@@ -20,7 +20,8 @@ class MovieDetailsViewModel: ObservableObject {
             handleProductionComapnyViewItem()
         }
     }
-    @Published var showError: (isThereError: Bool, error: Error?) = (false, nil)
+    @Published var showAlert = false
+    @Published var thrownError: LocalizedNetworkErrors?
     @Published var productionCompanies: [ProductionCompanyViewItem] = []
     
     init(movieID: Int, interactor: MovieDetailsInteractorProtocol = MovieDetailsInteractor()) {
@@ -41,17 +42,34 @@ class MovieDetailsViewModel: ObservableObject {
     
     func fetchMovieDetails() {
         interactor.fetchMovieDetails(movieID: movieID) {[weak self] result in
+            guard let self else { return }
             switch result {
             case .failure(let error):
                 DispatchQueue.main.async {
-                    self?.showError = (true, error)
+                    self.showAlert = true
+                    let error = error as? NetworkErrors
+                    switch error {
+                    case .noInternet:
+                        self.thrownError = LocalizedNetworkErrors.noInternet
+                    case .urlRequestConstructionError:
+                        self.thrownError = LocalizedNetworkErrors.urlRequestConstructionError
+                    case .failedToFetchData:
+                        self.thrownError = LocalizedNetworkErrors.failedToFetchData
+                    case .none:
+                        return
+                    }
                 }
                 
             case .success(let response):
                 DispatchQueue.main.async {
-                    self?.movieDetails = response
+                    self.movieDetails = response
                 }
             }
         }
+    }
+    
+    func resetError() {
+        showAlert = false
+        thrownError = nil
     }
 }

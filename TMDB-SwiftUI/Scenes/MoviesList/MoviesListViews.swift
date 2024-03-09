@@ -25,6 +25,9 @@ struct MoviesListViews: View {
                         }
                     }
                     
+                    if let reachability = NetworkReachabilityManager(), reachability.isReachable {
+                        
+                    }
                     
                     if viewModel.hasMoreRows, let reachability = NetworkReachabilityManager(), reachability.isReachable {
                         Text("Fetching more movies...")
@@ -35,13 +38,15 @@ struct MoviesListViews: View {
                 }
             }
             .navigationTitle("The Movie Database")
+            .alert(isPresented: $viewModel.showAlert, error: viewModel.thrownError) {
+                Button("Retry") {
+                    viewModel.resetError()
+                    viewModel.fetchMoviesFromAPI()
+                }
+                
+                Button("Cancel") { }
+            }
         }
-        .alert(isPresented: $viewModel.showAlert, content: {
-            Alert(title: Text("Error!"), message: Text("There was an error getting your data. Error: \(viewModel.thrownError?.localizedDescription ?? "")"), primaryButton: .default(Text("Retry"), action: {
-                viewModel.resetError()
-                viewModel.fetchMoviesFromAPI()
-            }), secondaryButton: .cancel())
-        })
     }
 }
 

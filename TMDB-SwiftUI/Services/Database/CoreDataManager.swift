@@ -64,18 +64,19 @@ extension CoreDataManager: DatabaseProtocol {
         guard objects.contains(object) else { return }
         
         managedObjectContext.perform { [weak self] in
-            self?.managedObjectContext.insert(object)
-            try? self?.managedObjectContext.save()
+            guard let self else { return }
+            self.managedObjectContext.insert(object)
+            try? self.managedObjectContext.save()
         }
     }
     
     func fetchPopularMovieResponses(request: NSFetchRequest<PopularMovieResponse>) -> [PopularMovieResponse]? {
-        let objects = try? self.managedObjectContext.fetch(request)
+        let objects = try? managedObjectContext.fetch(request)
         return objects
     }
     
     func fetchMovieDetailsResponses(request: NSFetchRequest<MovieDetailsResponse>) -> [MovieDetailsResponse]? {
-        let objects = try? self.managedObjectContext.fetch(request)
+        let objects = try? managedObjectContext.fetch(request)
         return objects
     }
 }

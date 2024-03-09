@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProductComapnyView: View {
-    var company: ProductionCompany
+    var company: ProductionCompanyCodable
     
     var body: some View {
         CacheAsyncImage(url: URL(string: APIConstants.imagesBaseURL.appending(company.logoPath ?? ""))) { phase in
@@ -41,5 +41,5 @@ struct ProductComapnyView: View {
 }
 
 #Preview {
-    ProductComapnyView(company: ProductionCompany(id: 1, logoPath: nil, name: ""))
+    ProductComapnyView(company: ProductionCompanyCodable(id: 1, logoPath: nil, name: ""))
 }

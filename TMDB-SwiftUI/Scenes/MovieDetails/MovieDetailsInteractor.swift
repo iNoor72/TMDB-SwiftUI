@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MovieDetailsInteractorProtocol {
-    func fetchMovieDetails(movieID: Int, completion: @escaping (Result<MovieDetailsResponse, Error>) -> ())
+    func fetchMovieDetails(movieID: Int, completion: @escaping (Result<MovieDetailsResponseCodable, Error>) -> ())
 }
 
 final class MovieDetailsInteractor: MovieDetailsInteractorProtocol {
@@ -17,13 +17,13 @@ final class MovieDetailsInteractor: MovieDetailsInteractorProtocol {
     init(
         repository: MovieDetailsRepositoryProtocol = MovieDetailsRepository(
             networkService: AlamofireNetworkManager(),
-            database: DatabaseManager()
+            database: CoreDataManager()
         ) 
     ) {
         self.repository = repository
     }
     
-    func fetchMovieDetails(movieID: Int, completion: @escaping (Result<MovieDetailsResponse, Error>) -> ()) {
+    func fetchMovieDetails(movieID: Int, completion: @escaping (Result<MovieDetailsResponseCodable, Error>) -> ()) {
         repository.fetchMovieDetails(movieID: movieID) { result in
             switch result {
             case .failure(let error):

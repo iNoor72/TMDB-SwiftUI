@@ -15,7 +15,7 @@ class MovieDetailsViewModel: ObservableObject {
     }
     
     private var interactor: MovieDetailsInteractorProtocol
-    @Published var movieDetails: MovieDetailsResponse?
+    @Published var movieDetails: MovieDetailsResponseCodable?
     @Published var showError: (isThereError: Bool, error: Error?) = (false, nil)
     
     init(movieID: Int, interactor: MovieDetailsInteractorProtocol = MovieDetailsInteractor()) {

@@ -8,7 +8,8 @@
 import Foundation
 
 protocol MoviesListInteractorProtocol {
-    func fetchPopularMovies(page: Int, completion: @escaping (Result<PopularMovieResponse, Error>) -> ())
+    func fetchPopularMovies(page: Int, completion: @escaping (Result<PopularMovieResponseCodable, Error>) -> ())
+    func viewItem(movie: MovieCodable) -> MovieViewItem?
 }
 
 final class MoviesListInteractor: MoviesListInteractorProtocol {
@@ -18,13 +19,25 @@ final class MoviesListInteractor: MoviesListInteractorProtocol {
     (
         repository: MoviesListRepositoryProtocol = MoviesListRepository(
             networkService: AlamofireNetworkManager(),
-            database: DatabaseManager()
+            database: CoreDataManager()
         )
     ) {
         self.repository = repository
     }
     
-    func fetchPopularMovies(page: Int = 1, completion: @escaping (Result<PopularMovieResponse, Error>) -> ()) {
+    func viewItem(movie: MovieCodable) -> MovieViewItem? {
+        let movieViewItem = MovieViewItem(
+            id: movie.id,
+            overview: movie.overview,
+            posterPath: movie.posterPath,
+            releaseDate: movie.releaseDate,
+            title: movie.title
+        )
+        
+        return movieViewItem
+    }
+    
+    func fetchPopularMovies(page: Int = 1, completion: @escaping (Result<PopularMovieResponseCodable, Error>) -> ()) {
         repository.fetchPopularMovies(page: page) { result in
             switch result {
             case .failure(let error):
@@ -35,4 +48,10 @@ final class MoviesListInteractor: MoviesListInteractorProtocol {
             }
         }
     }
+}
+
+struct MovieViewItem: Hashable {
+    let id: Int
+    let overview: String
+    let posterPath, releaseDate, title: String
 }

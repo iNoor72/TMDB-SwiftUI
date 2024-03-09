@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MoviesListRepositoryProtocol {
-    func fetchPopularMovies(page: Int, completion: @escaping (Result<PopularMovieResponse, Error>) -> ())
+    func fetchPopularMovies(page: Int, completion: @escaping (Result<PopularMovieResponseCodable, Error>) -> ())
 }
 
 final class MoviesListRepository: MoviesListRepositoryProtocol {
@@ -20,9 +20,9 @@ final class MoviesListRepository: MoviesListRepositoryProtocol {
         self.database = database
     }
     
-    func fetchPopularMovies(page: Int = 1, completion: @escaping (Result<PopularMovieResponse, Error>) -> ()) {
+    func fetchPopularMovies(page: Int = 1, completion: @escaping (Result<PopularMovieResponseCodable, Error>) -> ()) {
         let endpoint = MoviesEndpoint.popularMovies(page: page)
-        networkService.fetch(endpoint: endpoint, expectedType: PopularMovieResponse.self) {[weak self] result in
+        networkService.fetch(endpoint: endpoint, expectedType: PopularMovieResponseCodable.self) {[weak self] result in
             switch result {
             case .failure(let error):
                 guard let response = self?.handleDataResponse(), !response.movies.isEmpty else {
@@ -39,8 +39,8 @@ final class MoviesListRepository: MoviesListRepositoryProtocol {
         }
     }
     
-    private func handleDataResponse() -> PopularMovieResponse? {
-        var response: PopularMovieResponse? = nil
+    private func handleDataResponse() -> PopularMovieResponseCodable? {
+        var response: PopularMovieResponseCodable? = nil
             //Check if there's something in DB
         return response
     }

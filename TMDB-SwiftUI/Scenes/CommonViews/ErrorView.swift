@@ -21,6 +21,17 @@ struct ErrorView: View {
                 .padding()
             
             Text(error?.localizedDescription ?? "Oops! Something wrong happened")
+                .padding()
+            
+            Button("Retry connection") {
+                closure?()
+            }
+            .background {
+                Color.blue
+            }
+            .foregroundColor(.white)
+            .cornerRadius(4.0)
+            .padding()
         }
     }
 }

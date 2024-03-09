@@ -24,11 +24,6 @@ struct PopularMovieCellView: View {
                         .scaledToFit()
                         .cornerRadius(8.0)
                     
-                case .failure(let error):
-                    ErrorView(error: error) {
-                        errorClosure?()
-                    }
-                    
                 //Including error state
                 default:
                     Image(AppConstants.imagePlaceholderName)

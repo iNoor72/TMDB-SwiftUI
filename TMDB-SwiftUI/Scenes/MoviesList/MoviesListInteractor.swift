@@ -8,8 +8,8 @@
 import Foundation
 
 protocol MoviesListInteractorProtocol {
-    func fetchPopularMovies(page: Int, completion: @escaping (Result<PopularMovieResponseCodable, Error>) -> ())
-    func viewItem(movie: MovieCodable) -> MovieViewItem?
+    func fetchPopularMovies(page: Int, completion: @escaping (Result<PopularMovieResponse, Error>) -> ())
+    func viewItem(movie: Movie) -> MovieViewItem?
 }
 
 final class MoviesListInteractor: MoviesListInteractorProtocol {
@@ -19,25 +19,25 @@ final class MoviesListInteractor: MoviesListInteractorProtocol {
     (
         repository: MoviesListRepositoryProtocol = MoviesListRepository(
             networkService: AlamofireNetworkManager(),
-            database: CoreDataManager()
+            database: CoreDataManager.shared
         )
     ) {
         self.repository = repository
     }
     
-    func viewItem(movie: MovieCodable) -> MovieViewItem? {
+    func viewItem(movie: Movie) -> MovieViewItem? {
         let movieViewItem = MovieViewItem(
-            id: movie.id,
-            overview: movie.overview,
-            posterPath: movie.posterPath,
-            releaseDate: movie.releaseDate,
-            title: movie.title
+            id: Int(movie.id),
+            overview: movie.overview ?? "",
+            posterPath: movie.posterPath ?? "",
+            releaseDate: movie.releaseDate ?? "",
+            title: movie.title ?? ""
         )
         
         return movieViewItem
     }
     
-    func fetchPopularMovies(page: Int = 1, completion: @escaping (Result<PopularMovieResponseCodable, Error>) -> ()) {
+    func fetchPopularMovies(page: Int = 1, completion: @escaping (Result<PopularMovieResponse, Error>) -> ()) {
         repository.fetchPopularMovies(page: page) { result in
             switch result {
             case .failure(let error):

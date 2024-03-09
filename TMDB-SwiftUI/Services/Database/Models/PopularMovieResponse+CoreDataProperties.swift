@@ -16,8 +16,8 @@ extension PopularMovieResponse {
         return NSFetchRequest<PopularMovieResponse>(entityName: "PopularMovieResponse")
     }
 
-    @NSManaged public var totalPages: Int16
-    @NSManaged public var page: Int16
+    @NSManaged public var totalPages: Int64
+    @NSManaged public var page: Int64
     @NSManaged public var movies: NSSet?
 
 }

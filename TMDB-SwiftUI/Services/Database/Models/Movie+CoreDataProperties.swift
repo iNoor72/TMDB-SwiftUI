@@ -16,7 +16,7 @@ extension Movie {
         return NSFetchRequest<Movie>(entityName: "Movie")
     }
 
-    @NSManaged public var id: Int16
+    @NSManaged public var id: Int64
     @NSManaged public var overview: String?
     @NSManaged public var posterPath: String?
     @NSManaged public var title: String?
@@ -26,5 +26,4 @@ extension Movie {
 }
 
 extension Movie : Identifiable {
-
 }

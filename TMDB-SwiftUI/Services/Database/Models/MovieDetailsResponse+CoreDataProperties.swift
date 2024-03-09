@@ -18,7 +18,7 @@ extension MovieDetailsResponse {
 
     @NSManaged public var backdropPath: String?
     @NSManaged public var homepage: String?
-    @NSManaged public var id: Int16
+    @NSManaged public var id: Int64
     @NSManaged public var overview: String?
     @NSManaged public var releaseDate: String?
     @NSManaged public var tagline: String?
@@ -45,5 +45,4 @@ extension MovieDetailsResponse {
 }
 
 extension MovieDetailsResponse : Identifiable {
-
 }

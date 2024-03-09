@@ -124,7 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				8707307D2B9C8FFD002D5E1F /* Extensions */,
-				8707305F2B9B5F79002D5E1F /* Models */,
+				8707305F2B9B5F79002D5E1F /* Responses */,
 				870730392B9B5590002D5E1F /* Utilities */,
 				870730372B9B5573002D5E1F /* Core */,
 				870730362B9B5570002D5E1F /* Services */,
@@ -240,13 +240,13 @@
 			path = Endpoints;
 			sourceTree = "<group>";
 		};
-		8707305F2B9B5F79002D5E1F /* Models */ = {
+		8707305F2B9B5F79002D5E1F /* Responses */ = {
 			isa = PBXGroup;
 			children = (
 				870730602B9B5F8A002D5E1F /* PopularMovieResponse.swift */,
 				870730622B9B606B002D5E1F /* MovieDetailsResponse.swift */,
 			);
-			path = Models;
+			path = Responses;
 			sourceTree = "<group>";
 		};
 		870730682B9B6DA5002D5E1F /* Database */ = {

@@ -15,12 +15,25 @@ class MovieDetailsViewModel: ObservableObject {
     }
     
     private var interactor: MovieDetailsInteractorProtocol
-    @Published var movieDetails: MovieDetailsResponseCodable?
+    @Published var movieDetails: MovieDetailsResponse? {
+        didSet {
+            handleProductionComapnyViewItem()
+        }
+    }
     @Published var showError: (isThereError: Bool, error: Error?) = (false, nil)
+    @Published var productionCompanies: [ProductionCompanyViewItem] = []
     
     init(movieID: Int, interactor: MovieDetailsInteractorProtocol = MovieDetailsInteractor()) {
         self.interactor = interactor
         self.movieID = movieID
+    }
+    
+    private func handleProductionComapnyViewItem() {
+        guard let productionCompaniesArray = movieDetails?.productionCompanies?.allObjects as? [ProductionCompany] else { return }
+        for company in productionCompaniesArray {
+            guard let productionCompanyViewItem = interactor.productionCompanyViewItem(company: company) else { continue }
+            productionCompanies.append(productionCompanyViewItem)
+        }
     }
     
     func fetchMovieDetails() {

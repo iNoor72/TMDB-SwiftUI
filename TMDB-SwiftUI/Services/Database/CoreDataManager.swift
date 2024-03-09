@@ -9,6 +9,12 @@ import Foundation
 import CoreData
 
 final class CoreDataManager {
+    static let shared = CoreDataManager()
+    private init() { 
+        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        print(paths[0])
+    }
+    
     private lazy var managedObjectModel: NSManagedObjectModel = {
         guard let modelURL = Bundle.main.url(forResource: AppConstants.CoreDataModelName, withExtension: "momd") else {
             fatalError("Unable to Find Data Model")
@@ -53,5 +59,10 @@ final class CoreDataManager {
 }
 
 extension CoreDataManager: DatabaseProtocol {
-    
+    func save(object: NSManagedObject) {
+        managedObjectContext.perform { [weak self] in
+            self?.managedObjectContext.insert(object)
+            try? self?.managedObjectContext.save()
+        }
+    }
 }

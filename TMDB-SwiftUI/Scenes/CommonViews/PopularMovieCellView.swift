@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PopularMovieCellView: View {
-    var movie: Movie?
+    var movie: MovieViewItem?
     var errorClosure: (() -> ())?
     
     var body: some View {

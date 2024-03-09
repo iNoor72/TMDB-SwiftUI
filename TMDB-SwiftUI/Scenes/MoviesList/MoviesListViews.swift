@@ -15,7 +15,7 @@ struct MoviesListViews: View {
         NavigationView {
             VStack {
                 List {
-                    ForEach(viewModel.moviesList, id: \.self) { movie in
+                    ForEach(viewModel.movieViewItems, id: \.self) { movie in
                         let movieDetailsViewModel = MovieDetailsViewModel(movieID: movie.id)
                         NavigationLink(destination: MovieDetailsView(viewModel: movieDetailsViewModel)) {
                             PopularMovieCellView(movie: movie) {

@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct MovieDetailsResponse: Codable {
+struct MovieDetailsResponseCodable: Codable {
     let backdropPath: String
     let homepage: String
     let id: Int
     let overview: String
     let releaseDate: String
     let tagline, title: String
-    let productionCompanies: [ProductionCompany]?
+    let productionCompanies: [ProductionCompanyCodable]?
 
     enum CodingKeys: String, CodingKey {
         case backdropPath = "backdrop_path"
@@ -26,7 +26,7 @@ struct MovieDetailsResponse: Codable {
     }
 }
 
-struct ProductionCompany: Codable, Hashable, Identifiable {
+struct ProductionCompanyCodable: Codable, Hashable, Identifiable {
     let id: Int
     let logoPath: String?
     let name: String

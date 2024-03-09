@@ -52,7 +52,7 @@ struct MovieDetailsView: View {
                     .frame(alignment: .leading)
                     .bold()
                 
-                ForEach(viewModel.movieDetails?.productionCompanies ?? [], id: \.self) { company in
+                ForEach(viewModel.productionCompanies ?? [], id: \.self) { company in
                     ProductComapnyView(company: company)
                 }
                 

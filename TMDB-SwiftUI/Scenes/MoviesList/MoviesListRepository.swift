@@ -25,7 +25,11 @@ final class MoviesListRepository: MoviesListRepositoryProtocol {
         networkService.fetch(endpoint: endpoint, expectedType: PopularMovieResponse.self) {[weak self] result in
             switch result {
             case .failure(let error):
-                guard let response = self?.handleDataResponse(), !response.movies.isEmpty else {
+                guard
+                    let response = self?.handleDataResponse(),
+                    let moviesArray = response.movies?.allObjects,
+                    !moviesArray.isEmpty
+                else {
                     completion(.failure(error))
                     return
                 }
@@ -34,6 +38,7 @@ final class MoviesListRepository: MoviesListRepositoryProtocol {
                 
             case .success(let response):
                 //save to DB
+                self?.database.save(object: response)
                 completion(.success(response))
             }
         }
@@ -42,6 +47,8 @@ final class MoviesListRepository: MoviesListRepositoryProtocol {
     private func handleDataResponse() -> PopularMovieResponse? {
         var response: PopularMovieResponse? = nil
             //Check if there's something in DB
+        let fetchRequest = PopularMovieResponse.fetchRequest()
+//        database.fetch(request: fetchRequest)
         return response
     }
 }

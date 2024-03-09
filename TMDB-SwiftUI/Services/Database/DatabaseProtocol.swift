@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import CoreData
 
 protocol DatabaseProtocol {
-    
+    func save(object: NSManagedObject)
+//    func fetch(request: NSFetchRequest<NSFetchRequestResult>) -> NSManagedObject?
 }

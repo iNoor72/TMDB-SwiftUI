@@ -11,7 +11,6 @@ import Alamofire
 struct MoviesListViews: View {
     private let reachability = NetworkReachabilityManager()
     @StateObject private var viewModel = MoviesListViewModel()
-    @State private var showNetworkError = false
 
     var body: some View {
         NavigationView {
@@ -36,15 +35,14 @@ struct MoviesListViews: View {
             }
             .navigationTitle("The Movie Database")
             .onChange(of: reachability?.isReachable) {
-                showNetworkError = reachability?.isReachable == false
-                viewModel.resetError()
+                viewModel.showAlert = reachability?.isReachable == false
                 viewModel.fetchMoviesFromAPI()
             }
-            .alert(isPresented: $showNetworkError) {
-                Alert(title: Text("Error"), message: Text(AppStrings.noNetworkAlertMessage), dismissButton: .default(Text("OK"), action: {
-                    showNetworkError = false
+            .alert(isPresented: $viewModel.showAlert) {
+                Alert(title: Text("Error"), message: Text(AppStrings.noNetworkAlertMessage), primaryButton: .default(Text("Retry"), action: {
+                    viewModel.resetError()
                     viewModel.fetchMoviesFromAPI()
-                }))
+                }), secondaryButton: .cancel())
             }
         }
     }

@@ -6,6 +6,9 @@ This is my implementation for the task requested by Tinybeans company. An iOS ap
 
 ## Getting started
 To run the project, you simply open the project and wait for packages to be downloaded
+#### The app requires an API key from TMDB website to run it, please add you API key in the AppConstants file to the "APIKey" variable shown in the following screenshot:
+<img width="1044" alt="Screenshot 2024-03-10 at 7 49 17 PM" src="https://github.com/iNoor72/TMDB-SwiftUI/assets/52334140/3375c812-6126-4d6b-bb55-a3664f2bde6c">
+
 
 ## Video overview
 ![Simulator Screen Recording - iPhone 15 Pro - 2024-03-10 at 19 41 15](https://github.com/iNoor72/TMDB-SwiftUI/assets/52334140/b55820a5-c36a-4666-b675-3c82f7ea75c9)

@@ -51,7 +51,23 @@
 		8798C37A2B9D0F3A005597D0 /* LocalizedNetworkErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8798C3792B9D0F3A005597D0 /* LocalizedNetworkErrors.swift */; };
 		8798C37C2B9D14E8005597D0 /* LocalizedFetchingErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8798C37B2B9D14E8005597D0 /* LocalizedFetchingErrors.swift */; };
 		8798C37E2B9D288C005597D0 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8798C37D2B9D288C005597D0 /* NetworkMonitor.swift */; };
+		8798C38F2B9DC789005597D0 /* NetworkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8798C38E2B9DC789005597D0 /* NetworkServiceTests.swift */; };
+		8798C3922B9DCBAA005597D0 /* MockedNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8798C3912B9DCBAA005597D0 /* MockedNetworkService.swift */; };
+		8798C3942B9DCBDC005597D0 /* TestEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8798C3932B9DCBDC005597D0 /* TestEndpoint.swift */; };
+		8798C3962B9DCC67005597D0 /* MockedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8798C3952B9DCC67005597D0 /* MockedResponse.swift */; };
+		8798C39C2B9DCE39005597D0 /* DatabaseServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8798C39B2B9DCE39005597D0 /* DatabaseServiceTests.swift */; };
+		8798C39E2B9DCE53005597D0 /* MockedDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8798C39D2B9DCE53005597D0 /* MockedDatabaseManager.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8798C3872B9DC767005597D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8707301D2B9B556A002D5E1F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 870730242B9B556A002D5E1F;
+			remoteInfo = "TMDB-SwiftUI";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		870730252B9B556A002D5E1F /* TMDB-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TMDB-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +111,13 @@
 		8798C3792B9D0F3A005597D0 /* LocalizedNetworkErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedNetworkErrors.swift; sourceTree = "<group>"; };
 		8798C37B2B9D14E8005597D0 /* LocalizedFetchingErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedFetchingErrors.swift; sourceTree = "<group>"; };
 		8798C37D2B9D288C005597D0 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		8798C3832B9DC767005597D0 /* TMDB-SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TMDB-SwiftUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8798C38E2B9DC789005597D0 /* NetworkServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTests.swift; sourceTree = "<group>"; };
+		8798C3912B9DCBAA005597D0 /* MockedNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedNetworkService.swift; sourceTree = "<group>"; };
+		8798C3932B9DCBDC005597D0 /* TestEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestEndpoint.swift; sourceTree = "<group>"; };
+		8798C3952B9DCC67005597D0 /* MockedResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedResponse.swift; sourceTree = "<group>"; };
+		8798C39B2B9DCE39005597D0 /* DatabaseServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseServiceTests.swift; sourceTree = "<group>"; };
+		8798C39D2B9DCE53005597D0 /* MockedDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedDatabaseManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +132,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8798C3802B9DC767005597D0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -116,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				870730272B9B556A002D5E1F /* TMDB-SwiftUI */,
+				8798C3842B9DC767005597D0 /* TMDB-SwiftUITests */,
 				870730262B9B556A002D5E1F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -124,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				870730252B9B556A002D5E1F /* TMDB-SwiftUI.app */,
+				8798C3832B9DC767005597D0 /* TMDB-SwiftUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -303,6 +335,51 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		8798C3842B9DC767005597D0 /* TMDB-SwiftUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8798C3902B9DCB9E005597D0 /* MockedServices */,
+				8798C38D2B9DC772005597D0 /* Services */,
+			);
+			path = "TMDB-SwiftUITests";
+			sourceTree = "<group>";
+		};
+		8798C38D2B9DC772005597D0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8798C38E2B9DC789005597D0 /* NetworkServiceTests.swift */,
+				8798C39B2B9DCE39005597D0 /* DatabaseServiceTests.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		8798C3902B9DCB9E005597D0 /* MockedServices */ = {
+			isa = PBXGroup;
+			children = (
+				8798C3982B9DCE19005597D0 /* Database */,
+				8798C3972B9DCE0F005597D0 /* Network */,
+			);
+			path = MockedServices;
+			sourceTree = "<group>";
+		};
+		8798C3972B9DCE0F005597D0 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				8798C3912B9DCBAA005597D0 /* MockedNetworkService.swift */,
+				8798C3932B9DCBDC005597D0 /* TestEndpoint.swift */,
+				8798C3952B9DCC67005597D0 /* MockedResponse.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		8798C3982B9DCE19005597D0 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				8798C39D2B9DCE53005597D0 /* MockedDatabaseManager.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -329,6 +406,24 @@
 			productReference = 870730252B9B556A002D5E1F /* TMDB-SwiftUI.app */;
 			productType = "com.apple.product-type.application";
 		};
+		8798C3822B9DC767005597D0 /* TMDB-SwiftUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8798C3892B9DC767005597D0 /* Build configuration list for PBXNativeTarget "TMDB-SwiftUITests" */;
+			buildPhases = (
+				8798C37F2B9DC767005597D0 /* Sources */,
+				8798C3802B9DC767005597D0 /* Frameworks */,
+				8798C3812B9DC767005597D0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8798C3882B9DC767005597D0 /* PBXTargetDependency */,
+			);
+			name = "TMDB-SwiftUITests";
+			productName = "TMDB-SwiftUITests";
+			productReference = 8798C3832B9DC767005597D0 /* TMDB-SwiftUITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -341,6 +436,10 @@
 				TargetAttributes = {
 					870730242B9B556A002D5E1F = {
 						CreatedOnToolsVersion = 15.2;
+					};
+					8798C3822B9DC767005597D0 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = 870730242B9B556A002D5E1F;
 					};
 				};
 			};
@@ -362,6 +461,7 @@
 			projectRoot = "";
 			targets = (
 				870730242B9B556A002D5E1F /* TMDB-SwiftUI */,
+				8798C3822B9DC767005597D0 /* TMDB-SwiftUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -373,6 +473,13 @@
 			files = (
 				870730302B9B556B002D5E1F /* Preview Assets.xcassets in Resources */,
 				8707302D2B9B556B002D5E1F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8798C3812B9DC767005597D0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,7 +531,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8798C37F2B9DC767005597D0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8798C38F2B9DC789005597D0 /* NetworkServiceTests.swift in Sources */,
+				8798C3962B9DCC67005597D0 /* MockedResponse.swift in Sources */,
+				8798C39C2B9DCE39005597D0 /* DatabaseServiceTests.swift in Sources */,
+				8798C3942B9DCBDC005597D0 /* TestEndpoint.swift in Sources */,
+				8798C3922B9DCBAA005597D0 /* MockedNetworkService.swift in Sources */,
+				8798C39E2B9DCE53005597D0 /* MockedDatabaseManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8798C3882B9DC767005597D0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 870730242B9B556A002D5E1F /* TMDB-SwiftUI */;
+			targetProxy = 8798C3872B9DC767005597D0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		870730312B9B556B002D5E1F /* Debug */ = {
@@ -604,6 +732,42 @@
 			};
 			name = Release;
 		};
+		8798C38A2B9DC767005597D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NF6L68DRU6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iNoor.TMDB-SwiftUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TMDB-SwiftUI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TMDB-SwiftUI";
+			};
+			name = Debug;
+		};
+		8798C38B2B9DC767005597D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NF6L68DRU6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iNoor.TMDB-SwiftUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TMDB-SwiftUI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TMDB-SwiftUI";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -621,6 +785,15 @@
 			buildConfigurations = (
 				870730342B9B556B002D5E1F /* Debug */,
 				870730352B9B556B002D5E1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8798C3892B9DC767005597D0 /* Build configuration list for PBXNativeTarget "TMDB-SwiftUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8798C38A2B9DC767005597D0 /* Debug */,
+				8798C38B2B9DC767005597D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

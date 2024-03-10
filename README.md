@@ -7,10 +7,13 @@ This is my implementation for the task requested by Tinybeans company. An iOS ap
 ## Getting started
 To run the project, you simply open the project and wait for packages to be downloaded
 
+## Video overview
+![Simulator Screen Recording - iPhone 15 Pro - 2024-03-10 at 18 13 22](https://github.com/iNoor72/TMDB-SwiftUI/assets/52334140/ce63a562-1699-406e-96e2-275131e7d4bc)
+
 ## Tech stack
 - Swift and SwiftUI for the design.
 - SPM for handling packages.
-- Used MVVM UI Design Pattern applying Clean Architecture principles (Interactor/UserCase, Repository, Layers). For more info, <a href="https://www.google.com](https://inoor.hashnode.dev/clean-mvp-with-swift">click here</a> to view my article about applying Clean Architecrture principles to any UI Design Pattern.
+- Used MVVM UI Design Pattern applying Clean Architecture principles (Interactor/UserCase, Repository, Layers) for scalability and testablity. For more info, <a href="https://www.google.com](https://inoor.hashnode.dev/clean-mvp-with-swift">click here</a> to view my article about applying Clean Architecrture principles to any UI Design Pattern.
 - Core Data for database caching.
 
 ## Main Features

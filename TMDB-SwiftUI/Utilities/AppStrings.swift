@@ -9,6 +9,8 @@ import Foundation
 
 enum AppStrings {
     static let noNetworkAlertMessage = "You're not connected to network, you'll be using the app in the offline mode"
+    static let fetchingMoreDataString = "Fetching more movies..."
+    static let tryingToConnectString = "Trying to connect to network..."
     
     enum ErrorDescriptions {
         static let emptryDataErrorDescription = "The data fetched is empty"

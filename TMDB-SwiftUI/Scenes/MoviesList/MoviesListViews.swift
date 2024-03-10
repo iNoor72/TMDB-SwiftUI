@@ -25,17 +25,12 @@ struct MoviesListViews: View {
                     }
                     
                     if viewModel.hasMoreRows {
-                        if viewModel.isConnected {
-                            Text("Fetching more movies...")
-                                .onAppear {
-                                    self.viewModel.loadMore()
-                                }
-                        } else {
-                            Text("Trying to connect to network...")
-                                .onAppear {
-                                    self.viewModel.loadMore()
-                                }
-                        }
+                        let text = viewModel.isConnected ? AppStrings.fetchingMoreDataString : AppStrings.tryingToConnectString
+                        
+                        Text(text)
+                            .onAppear {
+                                self.viewModel.loadMore()
+                            }
                     }
                 }
             }

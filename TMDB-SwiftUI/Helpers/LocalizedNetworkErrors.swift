@@ -15,11 +15,11 @@ enum LocalizedNetworkErrors: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .urlRequestConstructionError:
-            return "There was an error getting data from URL. Please try again later"
+            return AppStrings.ErrorDescriptions.urlConstructionErrorDescription
         case .noInternet:
-            return "You're offline. Please reconnect to the network"
+            return AppStrings.ErrorDescriptions.noNetworkErrorDescription
         case .failedToFetchData:
-            return "There was an error fetching data from server"
+            return AppStrings.ErrorDescriptions.fetchingErrorDescription
         }
     }
 }

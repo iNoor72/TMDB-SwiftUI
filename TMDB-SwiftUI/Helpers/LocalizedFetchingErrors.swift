@@ -14,9 +14,9 @@ enum LocalizedFetchingErrors: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .emptyData:
-            return "The data fetched is empty"
+            return AppStrings.ErrorDescriptions.emptryDataErrorDescription
         case .failedToFetch:
-            return "A fetching error occured, try again"
+            return AppStrings.ErrorDescriptions.fetchingErrorDescription
         }
     }
 }

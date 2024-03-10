@@ -14,7 +14,7 @@ struct CacheAsyncImage<Content>: View where Content: View {
     private let transaction: Transaction
     private let content: (AsyncImagePhase) -> Content
     private let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
-    @State private var trialsCounter = 3
+    @State private var trialsCounter = 5
 
     init(
         url: URL?,

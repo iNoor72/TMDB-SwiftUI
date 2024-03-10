@@ -10,11 +10,8 @@ import SwiftUI
 @main
 struct TMDB_SwiftUIApp: App {
     var body: some Scene {
-        @StateObject var networkMonitor = NetworkMonitor()
-
         WindowGroup {
             MoviesListViews()
-                .environmentObject(networkMonitor)
         }
     }
 }

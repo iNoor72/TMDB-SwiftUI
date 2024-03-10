@@ -8,7 +8,7 @@ This is my implementation for the task requested by Tinybeans company. An iOS ap
 To run the project, you simply open the project and wait for packages to be downloaded
 
 ## Video overview
-![Simulator Screen Recording - iPhone 15 Pro - 2024-03-10 at 18 13 22](https://github.com/iNoor72/TMDB-SwiftUI/assets/52334140/ce63a562-1699-406e-96e2-275131e7d4bc)
+![Simulator Screen Recording - iPhone 15 Pro - 2024-03-10 at 19 41 15](https://github.com/iNoor72/TMDB-SwiftUI/assets/52334140/b55820a5-c36a-4666-b675-3c82f7ea75c9)
 
 ## Tech stack
 - Swift and SwiftUI for the design.

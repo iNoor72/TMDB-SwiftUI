@@ -19,7 +19,7 @@ enum LocalizedNetworkErrors: LocalizedError {
         case .noInternet:
             return AppStrings.ErrorDescriptions.noNetworkErrorDescription
         case .failedToFetchData:
-            return AppStrings.ErrorDescriptions.fetchingErrorDescription
+            return AppStrings.ErrorDescriptions.serverFetchingErrorDescription
         }
     }
 }

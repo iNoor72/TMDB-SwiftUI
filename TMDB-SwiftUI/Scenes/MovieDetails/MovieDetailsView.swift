@@ -68,9 +68,15 @@ struct MovieDetailsView: View {
                     Spacer()
                 }
             }.navigationTitle(viewModel.movieDetails?.title ?? "")
-                .onAppear {
+            .onAppear {
+                viewModel.fetchMovieDetails()
+            }
+            .alert(isPresented: $viewModel.showAlert) {
+                Alert(title: Text("Error"), message: Text(viewModel.thrownError?.localizedDescription ?? ""), primaryButton: .default(Text("Retry"), action: {
+                    viewModel.resetError()
                     viewModel.fetchMovieDetails()
-                }
+                }), secondaryButton: .cancel())
+            }
         }
     }
 }

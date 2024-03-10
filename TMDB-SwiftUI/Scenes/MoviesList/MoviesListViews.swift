@@ -39,7 +39,7 @@ struct MoviesListViews: View {
                 viewModel.fetchMoviesFromAPI()
             }
             .alert(isPresented: $viewModel.showAlert) {
-                Alert(title: Text("Error"), message: Text(AppStrings.noNetworkAlertMessage), primaryButton: .default(Text("Retry"), action: {
+                Alert(title: Text("Error"), message: Text(viewModel.thrownError?.localizedDescription ?? ""), primaryButton: .default(Text("Retry"), action: {
                     viewModel.resetError()
                     viewModel.fetchMoviesFromAPI()
                 }), secondaryButton: .cancel())

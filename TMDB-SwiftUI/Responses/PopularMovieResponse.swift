@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct PopularMovieResponse: Codable {
+struct PopularMovieResponseCodable: Codable {
     let totalPages: Int
     let page: Int
-    let movies: [Movie]
+    let movies: [MovieCodable]
 
     enum CodingKeys: String, CodingKey {
         case page
@@ -20,14 +20,12 @@ struct PopularMovieResponse: Codable {
 }
 
 // MARK: - Result
-struct Movie: Codable, Identifiable, Hashable {
-    let backdropPath: String
+struct MovieCodable: Codable, Identifiable, Hashable {
     let id: Int
     let overview: String
     let posterPath, releaseDate, title: String
 
     enum CodingKeys: String, CodingKey {
-        case backdropPath = "backdrop_path"
         case id
         case overview
         case posterPath = "poster_path"

@@ -15,27 +15,61 @@ class MovieDetailsViewModel: ObservableObject {
     }
     
     private var interactor: MovieDetailsInteractorProtocol
-    @Published var movieDetails: MovieDetailsResponse?
-    @Published var showError: (isThereError: Bool, error: Error?) = (false, nil)
+    @Published var movieDetails: MovieDetailsResponse? {
+        didSet {
+            handleProductionComapnyViewItem()
+        }
+    }
+    @Published var showAlert = false
+    @Published var thrownError: LocalizedNetworkErrors?
+    @Published var productionCompanies: [ProductionCompanyViewItem] = []
     
     init(movieID: Int, interactor: MovieDetailsInteractorProtocol = MovieDetailsInteractor()) {
         self.interactor = interactor
         self.movieID = movieID
     }
     
+    private func handleProductionComapnyViewItem() {
+        productionCompanies = []
+        guard let productionCompaniesArray = (movieDetails?.productionCompanies?.allObjects as? [ProductionCompany])?.sorted(by: {
+            $0.name ?? "" < $1.name ?? ""
+        }) else { return }
+        for company in productionCompaniesArray {
+            guard let productionCompanyViewItem = interactor.productionCompanyViewItem(company: company) else { continue }
+            productionCompanies.append(productionCompanyViewItem)
+        }
+    }
+    
     func fetchMovieDetails() {
         interactor.fetchMovieDetails(movieID: movieID) {[weak self] result in
+            guard let self else { return }
             switch result {
             case .failure(let error):
                 DispatchQueue.main.async {
-                    self?.showError = (true, error)
+                    self.showAlert = true
+                    let error = error as? NetworkErrors
+                    switch error {
+                    case .noInternet:
+                        self.thrownError = LocalizedNetworkErrors.noInternet
+                    case .urlRequestConstructionError:
+                        self.thrownError = LocalizedNetworkErrors.urlRequestConstructionError
+                    case .failedToFetchData:
+                        self.thrownError = LocalizedNetworkErrors.failedToFetchData
+                    case .none:
+                        return
+                    }
                 }
                 
             case .success(let response):
                 DispatchQueue.main.async {
-                    self?.movieDetails = response
+                    self.movieDetails = response
                 }
             }
         }
+    }
+    
+    func resetError() {
+        showAlert = false
+        thrownError = nil
     }
 }

@@ -6,7 +6,10 @@
 //
 
 import Foundation
+import CoreData
 
 protocol DatabaseProtocol {
-    
+    func save(object: NSManagedObject)
+    func fetchMovieDetailsResponses(request: NSFetchRequest<MovieDetailsResponse>) -> [MovieDetailsResponse]?
+    func fetchPopularMovieResponses(request: NSFetchRequest<PopularMovieResponse>) -> [PopularMovieResponse]?
 }

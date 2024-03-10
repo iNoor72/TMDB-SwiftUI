@@ -9,6 +9,7 @@ import Foundation
 
 protocol MovieDetailsInteractorProtocol {
     func fetchMovieDetails(movieID: Int, completion: @escaping (Result<MovieDetailsResponse, Error>) -> ())
+    func productionCompanyViewItem(company: ProductionCompany) -> ProductionCompanyViewItem?
 }
 
 final class MovieDetailsInteractor: MovieDetailsInteractorProtocol {
@@ -17,10 +18,20 @@ final class MovieDetailsInteractor: MovieDetailsInteractorProtocol {
     init(
         repository: MovieDetailsRepositoryProtocol = MovieDetailsRepository(
             networkService: AlamofireNetworkManager(),
-            database: DatabaseManager()
+            database: CoreDataManager.shared
         ) 
     ) {
         self.repository = repository
+    }
+    
+    func productionCompanyViewItem(company: ProductionCompany) -> ProductionCompanyViewItem? {
+        let productionCompanyViewItem = ProductionCompanyViewItem(
+            id: Int(company.id),
+            logoPath: company.logoPath,
+            name: company.name ?? ""
+        )
+        
+        return productionCompanyViewItem
     }
     
     func fetchMovieDetails(movieID: Int, completion: @escaping (Result<MovieDetailsResponse, Error>) -> ()) {
@@ -34,4 +45,10 @@ final class MovieDetailsInteractor: MovieDetailsInteractorProtocol {
             }
         }
     }
+}
+
+struct ProductionCompanyViewItem: Hashable {
+    let id: Int
+    let logoPath: String?
+    let name: String
 }

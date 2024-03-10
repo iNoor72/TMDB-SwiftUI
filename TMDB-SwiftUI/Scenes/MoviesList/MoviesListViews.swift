@@ -6,16 +6,17 @@
 //
 
 import SwiftUI
+import Alamofire
 
 struct MoviesListViews: View {
+    private let reachability = NetworkReachabilityManager()
     @StateObject private var viewModel = MoviesListViewModel()
-    @State var showError = false
 
     var body: some View {
         NavigationView {
             VStack {
                 List {
-                    ForEach(viewModel.moviesList, id: \.self) { movie in
+                    ForEach(viewModel.movieViewItems, id: \.self) { movie in
                         let movieDetailsViewModel = MovieDetailsViewModel(movieID: movie.id)
                         NavigationLink(destination: MovieDetailsView(viewModel: movieDetailsViewModel)) {
                             PopularMovieCellView(movie: movie) {
@@ -24,8 +25,7 @@ struct MoviesListViews: View {
                         }
                     }
                     
-                    
-                    if viewModel.hasMoreRows {
+                    if viewModel.hasMoreRows, let reachability = NetworkReachabilityManager(), reachability.isReachable {
                         Text("Fetching more movies...")
                             .onAppear(perform: {
                                 self.viewModel.loadMore()
@@ -34,15 +34,17 @@ struct MoviesListViews: View {
                 }
             }
             .navigationTitle("The Movie Database")
-        }.onAppear {
-            viewModel.fetchMoviesFromAPI()
-        }
-        .alert(isPresented: $viewModel.showAlert, content: {
-            Alert(title: Text("Error!"), message: Text("There was an error getting your data. Error: \(viewModel.thrownError?.localizedDescription ?? "")"), primaryButton: .default(Text("Retry"), action: {
-                viewModel.resetError()
+            .onChange(of: reachability?.isReachable) {
+                viewModel.showAlert = reachability?.isReachable == false
                 viewModel.fetchMoviesFromAPI()
-            }), secondaryButton: .cancel())
-        })
+            }
+            .alert(isPresented: $viewModel.showAlert) {
+                Alert(title: Text("Error"), message: Text(viewModel.thrownError?.localizedDescription ?? ""), primaryButton: .default(Text("Retry"), action: {
+                    viewModel.resetError()
+                    viewModel.fetchMoviesFromAPI()
+                }), secondaryButton: .cancel())
+            }
+        }
     }
 }
 

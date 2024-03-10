@@ -8,16 +8,31 @@
 import Foundation
 
 class MoviesListViewModel: ObservableObject {
-    @Published var moviesList: [Movie] = []
-    @Published var thrownError: Error? = nil
+    @Published var thrownError: LocalizedNetworkErrors?
     @Published var showAlert = false
+    @Published var movieViewItems: [MovieViewItem] = []
+    @Published var moviesList: [Movie] = [] {
+        didSet {
+            handleMovieViewItems()
+        }
+    }
+    
+    private var interactor: MoviesListInteractorProtocol
     var hasMoreRows = false
     var page = 1
     var totalPages = 1
-    private var interactor: MoviesListInteractorProtocol
     
     init(interactor: MoviesListInteractorProtocol = MoviesListInteractor()) {
         self.interactor = interactor
+        fetchMoviesFromAPI()
+    }
+    
+    private func handleMovieViewItems() {
+        movieViewItems = []
+        for movie in moviesList {
+            guard let movieViewItem = interactor.viewItem(movie: movie) else { continue }
+            movieViewItems.append(movieViewItem)
+        }
     }
     
     func loadMore() {
@@ -38,13 +53,26 @@ class MoviesListViewModel: ObservableObject {
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.showAlert = true
-                    self.thrownError = error
+                    let error = error as? NetworkErrors
+                    switch error {
+                    case .noInternet:
+                        self.thrownError = LocalizedNetworkErrors.noInternet
+                    case .urlRequestConstructionError:
+                        self.thrownError = LocalizedNetworkErrors.urlRequestConstructionError
+                    case .failedToFetchData:
+                        self.thrownError = LocalizedNetworkErrors.failedToFetchData
+                    case .none:
+                        return
+                    }
                 }
                 
             case .success(let response):
                 DispatchQueue.main.async {
-                    self.totalPages = response.totalPages
-                    self.moviesList.append(contentsOf: response.movies)
+                    guard let movies = response.movies?.allObjects as? [Movie] else { return }
+                    self.totalPages = Int(response.totalPages)
+                    self.moviesList.append(contentsOf: movies.sorted(by: {
+                        $0.releaseDate ?? "" > $1.releaseDate ?? ""
+                    }))
                     if self.totalPages > self.page { self.hasMoreRows = true }
                 }
             }

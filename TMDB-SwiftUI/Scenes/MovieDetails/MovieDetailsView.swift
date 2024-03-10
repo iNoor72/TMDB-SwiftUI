@@ -9,9 +9,9 @@ import SwiftUI
 import Alamofire
 
 struct MovieDetailsView: View {
-    private let reachability = NetworkReachabilityManager()
     @StateObject var viewModel: MovieDetailsViewModel
     @State private var showNetworkError = false
+    private let reachability = NetworkReachabilityManager()
     
     var body: some View {
         if viewModel.showAlert {
@@ -51,7 +51,7 @@ struct MovieDetailsView: View {
                     
                     Spacer()
                     
-                    Text("Released at: " + (viewModel.movieDetails?.releaseDate ?? ""))
+                    Text("Release date: " + (viewModel.movieDetails?.releaseDate ?? ""))
                     Text(viewModel.movieDetails?.overview ?? "")
                         .padding()
                     

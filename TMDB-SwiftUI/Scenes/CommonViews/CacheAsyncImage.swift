@@ -77,6 +77,10 @@ fileprivate class ImageCache {
             ImageCache.cache[url]
         }
         set {
+            //Cache 30 images at max, for the app not to grow quickly on memory
+            if cache.count > 30 {
+                _ = cache.popFirst()
+            }
             ImageCache.cache[url] = newValue
         }
     }

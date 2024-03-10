@@ -26,12 +26,12 @@ struct ErrorView: View {
             Button("Retry connection") {
                 closure?()
             }
+            .padding()
             .background {
                 Color.blue
             }
             .foregroundColor(.white)
             .cornerRadius(4.0)
-            .padding()
         }
     }
 }

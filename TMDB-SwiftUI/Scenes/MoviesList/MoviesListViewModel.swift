@@ -10,6 +10,7 @@ import Foundation
 class MoviesListViewModel: ObservableObject {
     @Published var thrownError: LocalizedNetworkErrors?
     @Published var showAlert = false
+    @Published var isConnected = true
     @Published var movieViewItems: [MovieViewItem] = []
     @Published var moviesList: [Movie] = [] {
         didSet {
@@ -35,18 +36,37 @@ class MoviesListViewModel: ObservableObject {
         }
     }
     
+    private func isConnectedToNetwork() -> Bool {
+        interactor.isConnectedToNetwork()
+    }
+    
     func loadMore() {
+        guard isConnectedToNetwork() else {
+            isConnected = false
+            showAlert = true
+            thrownError = .noInternet
+            return
+        }
+        
         guard page < totalPages else {
             hasMoreRows = false
             return
         }
         
+        resetError()
+        isConnected = true
         hasMoreRows = true
         page += 1
         fetchMoviesFromAPI()
     }
     
     func fetchMoviesFromAPI() {
+        if !isConnectedToNetwork() {
+            isConnected = false
+            showAlert = true
+            thrownError = .noInternet
+        }
+        
         interactor.fetchPopularMovies(page: page) {[weak self] result in
             guard let self else { return }
             switch result {

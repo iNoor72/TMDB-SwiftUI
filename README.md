@@ -1,14 +1,17 @@
 # 🍏 The Movie Database - iOS
-The Movie Database is my implementation of required technical task for Tinybeans.
+The Movie Database is my implementation of a required technical task.
 
 ## Description
-This is my implementation for the task requested by Tinybeans company. An iOS app to fetch and present popular movies and their details from TMDB website.
+This is my implementation for a task requested. An iOS app to fetch and present popular movies and their details from TMDB website.
 
 ## Getting started
 To run the project, you simply open the project and wait for packages to be downloaded
+#### The app requires an API key from TMDB website to run it, please add you API key in the AppConstants file to the "APIKey" variable shown in the following screenshot:
+<img width="1044" alt="Screenshot 2024-03-10 at 7 49 17 PM" src="https://github.com/iNoor72/TMDB-SwiftUI/assets/52334140/3375c812-6126-4d6b-bb55-a3664f2bde6c">
+
 
 ## Video overview
-![Simulator Screen Recording - iPhone 15 Pro - 2024-03-10 at 18 13 22](https://github.com/iNoor72/TMDB-SwiftUI/assets/52334140/ce63a562-1699-406e-96e2-275131e7d4bc)
+![Simulator Screen Recording - iPhone 15 Pro - 2024-03-10 at 19 41 15](https://github.com/iNoor72/TMDB-SwiftUI/assets/52334140/b55820a5-c36a-4666-b675-3c82f7ea75c9)
 
 ## Tech stack
 - Swift and SwiftUI for the design.

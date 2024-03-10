@@ -31,7 +31,8 @@ final class MoviesListInteractor: MoviesListInteractorProtocol {
             overview: movie.overview ?? "",
             posterPath: movie.posterPath ?? "",
             releaseDate: movie.releaseDate ?? "",
-            title: movie.title ?? ""
+            title: movie.title ?? "",
+            rating: movie.rating
         )
         
         return movieViewItem
@@ -54,4 +55,5 @@ struct MovieViewItem: Hashable {
     let id: Int
     let overview: String
     let posterPath, releaseDate, title: String
+    let rating: Double
 }

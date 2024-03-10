@@ -17,6 +17,7 @@ public class Movie: NSManagedObject, Codable {
         case posterPath = "poster_path"
         case releaseDate = "release_date"
         case title
+        case rating = "vote_average"
     }
     
     required public convenience init(from decoder: Decoder) throws {
@@ -29,6 +30,7 @@ public class Movie: NSManagedObject, Codable {
         title = try container.decode(String.self, forKey: .title)
         posterPath = try container.decode(String.self, forKey: .posterPath)
         releaseDate = try container.decode(String.self, forKey: .releaseDate)
+        rating = try container.decode(Double.self, forKey: .rating)
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -38,5 +40,6 @@ public class Movie: NSManagedObject, Codable {
         try container.encode(title, forKey: .title)
         try container.encode(posterPath, forKey: .posterPath)
         try container.encode(releaseDate, forKey: .releaseDate)
+        try container.encode(rating, forKey: .rating)
     }
 }

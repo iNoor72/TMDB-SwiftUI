@@ -6,13 +6,16 @@
 //
 
 import Foundation
+import Alamofire
 
 protocol MoviesListInteractorProtocol {
     func fetchPopularMovies(page: Int, completion: @escaping (Result<PopularMovieResponse, Error>) -> ())
     func viewItem(movie: Movie) -> MovieViewItem?
+    func isConnectedToNetwork() -> Bool
 }
 
 final class MoviesListInteractor: MoviesListInteractorProtocol {
+    private let reachability = NetworkReachabilityManager()
     private let repository: MoviesListRepositoryProtocol
     
     init
@@ -48,6 +51,11 @@ final class MoviesListInteractor: MoviesListInteractorProtocol {
                 completion(.success(response))
             }
         }
+    }
+    
+    func isConnectedToNetwork() -> Bool {
+        guard let reachability else { return false }
+        return reachability.isReachable
     }
 }
 

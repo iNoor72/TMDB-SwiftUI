@@ -6,10 +6,9 @@
 //
 
 import SwiftUI
-import Alamofire
 
 struct MoviesListViews: View {
-    private let reachability = NetworkReachabilityManager()
+    @State private var isConnectedToNetwork = true
     @StateObject private var viewModel = MoviesListViewModel()
 
     var body: some View {
@@ -25,19 +24,22 @@ struct MoviesListViews: View {
                         }
                     }
                     
-                    if viewModel.hasMoreRows, let reachability = NetworkReachabilityManager(), reachability.isReachable {
-                        Text("Fetching more movies...")
-                            .onAppear(perform: {
-                                self.viewModel.loadMore()
-                            })
+                    if viewModel.hasMoreRows {
+                        if viewModel.isConnected {
+                            Text("Fetching more movies...")
+                                .onAppear {
+                                    self.viewModel.loadMore()
+                                }
+                        } else {
+                            Text("Trying to connect to network...")
+                                .onAppear {
+                                    self.viewModel.loadMore()
+                                }
+                        }
                     }
                 }
             }
             .navigationTitle("The Movie Database")
-            .onChange(of: reachability?.isReachable) {
-                viewModel.showAlert = reachability?.isReachable == false
-                viewModel.fetchMoviesFromAPI()
-            }
             .alert(isPresented: $viewModel.showAlert) {
                 Alert(title: Text("Error"), message: Text(viewModel.thrownError?.localizedDescription ?? ""), primaryButton: .default(Text("Retry"), action: {
                     viewModel.resetError()

@@ -40,19 +40,23 @@ struct PopularMovieCellView: View {
             }
             
             VStack {
-                HStack(spacing: 1) {
-                    let maxRange = Int((movie?.rating ?? 0) / 2) + 1
-                    ForEach(0..<maxRange, id: \.self) { _ in
-                        Image(systemName: "star.fill")
-                            .resizable()
-                            .foregroundStyle(.yellow)
-                            .frame(width: 12, height: 12)
+                if (movie?.rating ?? 0) > 0 {
+                    HStack(spacing: 1) {
+                        let maxRange = Int((movie?.rating ?? 0) / 2) + 1
+                        ForEach(0..<maxRange, id: \.self) { _ in
+                            Image(systemName: "star.fill")
+                                .resizable()
+                                .foregroundStyle(.yellow)
+                                .frame(width: 12, height: 12)
+                        }
                     }
+                    
+                    
+                    Text("Rating:\n\((movie?.rating ?? 0).removeZerosFromEnd())/10")
+                        .frame(alignment: .leading)
+                } else {
+                    Text("No rating yet")
                 }
-                
-                
-                Text("Rating:\n\((movie?.rating ?? 0).removeZerosFromEnd())/10")
-                    .frame(alignment: .leading)
             }
         }
     }

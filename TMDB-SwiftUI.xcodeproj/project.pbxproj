@@ -35,9 +35,7 @@
 		870730772B9B93DD002D5E1F /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870730762B9B93DD002D5E1F /* ErrorView.swift */; };
 		8707307F2B9C9011002D5E1F /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8707307E2B9C9011002D5E1F /* Double.swift */; };
 		870730822B9C91BB002D5E1F /* CacheAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870730812B9C91BB002D5E1F /* CacheAsyncImage.swift */; };
-		870730852B9CA13F002D5E1F /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 870730842B9CA13F002D5E1F /* Reachability */; };
 		870730872B9CA9CB002D5E1F /* ProductComapnyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870730862B9CA9CB002D5E1F /* ProductComapnyView.swift */; };
-		870730892B9CCC2B002D5E1F /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 870730882B9CCC2B002D5E1F /* Reachability */; };
 		8798C3522B9CDA43005597D0 /* TMDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8798C3502B9CDA43005597D0 /* TMDB.xcdatamodeld */; };
 		8798C36E2B9CEFE4005597D0 /* Movie+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8798C3662B9CEFE4005597D0 /* Movie+CoreDataClass.swift */; };
 		8798C36F2B9CEFE4005597D0 /* Movie+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8798C3672B9CEFE4005597D0 /* Movie+CoreDataProperties.swift */; };
@@ -126,8 +124,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				870730402B9B565F002D5E1F /* Alamofire in Frameworks */,
-				870730892B9CCC2B002D5E1F /* Reachability in Frameworks */,
-				870730852B9CA13F002D5E1F /* Reachability in Frameworks */,
 				870730422B9B565F002D5E1F /* AlamofireDynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,8 +395,6 @@
 			packageProductDependencies = (
 				8707303F2B9B565F002D5E1F /* Alamofire */,
 				870730412B9B565F002D5E1F /* AlamofireDynamic */,
-				870730842B9CA13F002D5E1F /* Reachability */,
-				870730882B9CCC2B002D5E1F /* Reachability */,
 			);
 			productName = "TMDB-SwiftUI";
 			productReference = 870730252B9B556A002D5E1F /* TMDB-SwiftUI.app */;
@@ -454,7 +448,6 @@
 			mainGroup = 8707301C2B9B556A002D5E1F;
 			packageReferences = (
 				8707303E2B9B565F002D5E1F /* XCRemoteSwiftPackageReference "Alamofire" */,
-				870730832B9CA13F002D5E1F /* XCRemoteSwiftPackageReference "Reachability" */,
 			);
 			productRefGroup = 870730262B9B556A002D5E1F /* Products */;
 			projectDirPath = "";
@@ -809,14 +802,6 @@
 				minimumVersion = 5.9.0;
 			};
 		};
-		870730832B9CA13F002D5E1F /* XCRemoteSwiftPackageReference "Reachability" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/tonymillion/Reachability";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -829,15 +814,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8707303E2B9B565F002D5E1F /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = AlamofireDynamic;
-		};
-		870730842B9CA13F002D5E1F /* Reachability */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 870730832B9CA13F002D5E1F /* XCRemoteSwiftPackageReference "Reachability" */;
-			productName = Reachability;
-		};
-		870730882B9CCC2B002D5E1F /* Reachability */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Reachability;
 		};
 /* End XCSwiftPackageProductDependency section */
 

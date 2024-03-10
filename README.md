@@ -1,5 +1,5 @@
 # 🍏 The Movie Database - iOS
-The Movie Database is my implementation of required technical task.
+The Movie Database is my implementation of a required technical task.
 
 ## Description
 This is my implementation for a task requested. An iOS app to fetch and present popular movies and their details from TMDB website.

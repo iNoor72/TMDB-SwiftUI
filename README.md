@@ -1,8 +1,8 @@
 # 🍏 The Movie Database - iOS
-The Movie Database is my implementation of a required technical task.
+The Movie Database is my implementation for an iOS app to show movies.
 
 ## Description
-This is my implementation for a task requested. An iOS app to fetch and present popular movies and their details from TMDB website.
+The Movie Database is an iOS app to fetch and present popular movies and their details from TMDB website.
 
 ## Getting started
 To run the project, you simply open the project and wait for packages to be downloaded

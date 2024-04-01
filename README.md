@@ -31,6 +31,7 @@ To run the project, you simply open the project and wait for packages to be down
 - Pagination for loading movies.
 - Implemented In-Memory caching for images to enhance UX.
 - Implemented database caching using Core Data stack built from scratch.
+- Used DTO for providing data from Interactor to Presenter to View.
 - Mocking for the network and database layers.
 - Unit testing for the main layers (Network & Database) using Mocks.
 
